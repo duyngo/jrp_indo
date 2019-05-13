@@ -5,7 +5,7 @@ class Model_jrp_project_app_detail extends MY_Model {
 
 	private $primary_key 	= 'id';
 	private $table_name 	= 'jrp_project_app_detail';
-	private $field_search 	= ['document_id', 'title', 'project_id'];
+	private $field_search 	= ['document_id', 'title'];//, 'project_id'
 
 	public function __construct()
 	{
@@ -18,7 +18,7 @@ class Model_jrp_project_app_detail extends MY_Model {
 		parent::__construct($config);
 	}
 
-	public function count_all($q = null, $field = null)
+	public function count_all($q = null, $field = null, $static_field = null)
 	{
 		$iterasi = 1;
         $num = count($this->field_search);
@@ -27,18 +27,18 @@ class Model_jrp_project_app_detail extends MY_Model {
 		$field = $this->scurity($field);
 
         if (empty($field)) {
-	        foreach ($this->field_search as $field) {
-	            if ($iterasi == 1) {
-	                $where .= "jrp_project_app_detail.".$field . " LIKE '%" . $q . "%' ";
-	            } else {
-	                $where .= "OR " . "jrp_project_app_detail.".$field . " LIKE '%" . $q . "%' ";
-	            }
-	            $iterasi++;
-	        }
+            foreach ($this->field_search as $field) {
+                if ($iterasi == 1) {
+                    $where .= "jrp_project_app_detail.$field  LIKE '%$q%' ";
+                } else {
+                    $where .= "OR jrp_project_app_detail.$field  LIKE '%$q%' ";
+                }
+                $iterasi++;
+            }
 
-	        $where = '('.$where.')';
+            $where = "($where AND jrp_project_app_detail.project_id LIKE '%$static_field%')";
         } else {
-        	$where .= "(" . "jrp_project_app_detail.".$field . " LIKE '%" . $q . "%' )";
+            $where .= "(jrp_project_app_detail.$field  LIKE '%$q%' AND jrp_project_app_detail.project_id LIKE '%$static_field%')";
         }
 
 		$this->join_avaiable();
@@ -48,7 +48,7 @@ class Model_jrp_project_app_detail extends MY_Model {
 		return $query->num_rows();
 	}
 
-	public function get($q = null, $field = null, $limit = 0, $offset = 0, $select_field = [])
+	public function get($q = null, $field = null, $static_field = null,$limit = 0, $offset = 0, $select_field = [])
 	{
 		$iterasi = 1;
         $num = count($this->field_search);
@@ -59,16 +59,16 @@ class Model_jrp_project_app_detail extends MY_Model {
         if (empty($field)) {
 	        foreach ($this->field_search as $field) {
 	            if ($iterasi == 1) {
-	                $where .= "jrp_project_app_detail.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "jrp_project_app_detail.$field  LIKE '%$q%' ";
 	            } else {
-	                $where .= "OR " . "jrp_project_app_detail.".$field . " LIKE '%" . $q . "%' ";
+	                $where .= "OR jrp_project_app_detail.$field  LIKE '%$q%' ";
 	            }
 	            $iterasi++;
 	        }
 
-	        $where = '('.$where.')';
+	        $where = "($where AND jrp_project_app_detail.project_id LIKE '%$static_field%')";
         } else {
-        	$where .= "(" . "jrp_project_app_detail.".$field . " LIKE '%" . $q . "%' )";
+        	$where .= "(jrp_project_app_detail.$field  LIKE '%$q%' AND jrp_project_app_detail.project_id LIKE '%$static_field%')";
         }
 
         if (is_array($select_field) AND count($select_field)) {

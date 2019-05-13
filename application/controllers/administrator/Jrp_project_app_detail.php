@@ -29,12 +29,14 @@ class Jrp_project_app_detail extends Admin
 	{
 		$this->is_allowed('jrp_project_app_detail_list');
 
-		$filter = $projectId;
-		$field 	= 'project_id';
+        $filter = $this->input->get('q');
+        $field 	= $this->input->get('f');
+
+		$static_field = $projectId;
 		
 		$select_fields = array('jrp_project_app_detail.*');
 
-		$this->data['jrp_project_app_details'] = $this->model_jrp_project_app_detail->get($filter, $field, $this->limit_page, $offset,$select_fields);
+		$this->data['jrp_project_app_details'] = $this->model_jrp_project_app_detail->get($filter, $field,$static_field, $this->limit_page, $offset,$select_fields);
 		$this->data['jrp_project_app_detail_counts'] = $this->model_jrp_project_app_detail->count_all($filter, $field);
 		
 		$this->data['project_id'] = $projectId;

@@ -71,7 +71,7 @@ jQuery(document).ready(domo);
                      <h5 class="widget-user-desc"><?= cclang('list_all', ['Application Detail']); ?>  <i class="label bg-yellow"><?= $jrp_project_app_detail_counts; ?>  <?= cclang('items'); ?></i></h5>
                   </div>
 
-                  <form name="form_jrp_project_app_detail" id="form_jrp_project_app_detail" action="<?= base_url('administrator/jrp_project_app_detail/index'); ?>">
+                  <form name="form_jrp_project_app_detail" id="form_jrp_project_app_detail" action="<?= base_url('administrator/jrp_project_app_detail/index/').$project_id; ?>">
                   
 
                   <div class="table-responsive"> 
@@ -141,7 +141,7 @@ jQuery(document).ready(domo);
                            <option value=""><?= cclang('all'); ?></option>
                             <option <?= $this->input->get('f') == 'document_id' ? 'selected' :''; ?> value="document_id">Document Id</option>
                            <option <?= $this->input->get('f') == 'title' ? 'selected' :''; ?> value="title">Title</option>
-                           <option <?= $this->input->get('f') == 'project_id' ? 'selected' :''; ?> value="project_id">Project Id</option>
+
                           </select>
                      </div>
                      <div class="col-sm-1 padd-left-0 ">

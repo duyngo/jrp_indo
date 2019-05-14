@@ -218,6 +218,8 @@ class MY_Model extends CI_Model {
             'title' => $title
         ], TRUE);
 
+        var_dump($content);die;
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);

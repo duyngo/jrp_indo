@@ -450,6 +450,78 @@ WHERE fc.`fixture_id` = cs.fixtures) as watt");
         $this->pdf->Output($table.'.pdf', 'H');
     }
 
+    public function pdf_lcp($table, $title, $project)
+    {
+        $this->load->library('HtmlPdf');
+
+        $config = array(
+            'orientation' => 'l',
+            'format' => 'a4',
+            'marges' => array(15, 15, 15, 15)
+        );
+
+        $this->pdf = new HtmlPdf($config);
+
+        $this->db->select("c.LCP_code,c.type,c.lcp_layout,c.location,c.area,c.control_area_name,c.note");
+        $this->db->from($table.' c');
+        $this->db->join('jrp_project_book pb','c.project_id = pb.id');
+
+        $this->db->where('c.project_id = '.$project->id);
+        //$this->db->order_by('bl.document_id','ASC');
+        $result = $this->db->get();
+
+        $fields = $result->list_fields();
+
+
+        $content = $this->pdf->loadHtmlPdf('core_template/pdf/qty', [
+            'results' => $result->result(),
+            'fields' => $fields,
+            'title' => $title,
+            'project_name' => $project->name
+        ], TRUE);
+
+        $this->pdf->initialize($config);
+        $this->pdf->pdf->SetDisplayMode('fullpage');
+        $this->pdf->writeHTML($content);
+        $this->pdf->Output($table.'.pdf', 'H');
+    }
+    public function pdf_dimming($table, $title, $project)
+    {
+        $this->load->library('HtmlPdf');
+
+        $config = array(
+            'orientation' => 'l',
+            'format' => 'a4',
+            'marges' => array(15, 15, 15, 15)
+        );
+
+        $this->pdf = new HtmlPdf($config);
+
+        $this->db->select("c.circuit_id,c.scene_1,c.scene_2,c.scene_3,c.scene_4,c.scene_5,c.scene_6,c.note,bc.circuit");
+        $this->db->from($table.' c');
+        $this->db->join('jrp_project_book pb','c.project_id = pb.id');
+        $this->db->join('jrp_book_circuit bc','c.circuit_id = bc.id');
+
+        $this->db->where('c.project_id = '.$project->id);
+        //$this->db->order_by('bl.document_id','ASC');
+        $result = $this->db->get();
+
+        $fields = $result->list_fields();
+
+
+        $content = $this->pdf->loadHtmlPdf('core_template/pdf/dimming', [
+            'results' => $result->result(),
+            'fields' => $fields,
+            'title' => $title,
+            'project_name' => $project->name
+        ], TRUE);
+
+        $this->pdf->initialize($config);
+        $this->pdf->pdf->SetDisplayMode('fullpage');
+        $this->pdf->writeHTML($content);
+        $this->pdf->Output($table.'.pdf', 'H');
+    }
+
 }
 
 /* End of file Model_jrp_project_book.php */

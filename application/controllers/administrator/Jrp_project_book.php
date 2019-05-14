@@ -326,6 +326,23 @@ class Jrp_project_book extends Admin
 
 		$this->model_jrp_project_book->pdf_circuit_qty('jrp_book_circuit','Circuit Quantities',$project);
 	}
+
+    public function export_pdf_lcp($project_id)
+    {
+        $this->is_allowed('jrp_book_layout_export');
+
+        $project = $this->model_jrp_project_book->get_single("id = ".$project_id);
+
+        $this->model_jrp_project_book->pdf_lcp('jrp_project_lcp','LCP',$project);
+    }
+    public function export_pdf_dimming($project_id)
+    {
+        $this->is_allowed('jrp_book_layout_export');
+
+        $project = $this->model_jrp_project_book->get_single("id = ".$project_id);
+
+        $this->model_jrp_project_book->pdf_dimming('jrp_book_dimming_setting','DIMMING SETTING',$project);
+    }
 	
 	public function export_pdf_fixture_qty($project_id)
 	{

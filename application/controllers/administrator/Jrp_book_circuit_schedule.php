@@ -28,13 +28,16 @@ class Jrp_book_circuit_schedule extends Admin
 	{
 		$this->is_allowed('jrp_book_circuit_schedule_list');
 
-		$filter = $projectId;//$this->input->get('q');
-		$field 	= 'project_id';//$this->input->get('f');
+        $filter = $this->input->get('q');
+        $field 	= $this->input->get('f');
+
+        $parent_field = $projectId;
+
 
 		$select_fields = array("jrp_book_circuit_schedule.*","jrp_book_circuit.id AS 'cid'","jrp_book_circuit.circuit AS 'circuit_code'","jrp_fixture.code AS 'fixtures_code'","jrp_mstr_load_type.name AS 'load_name'","jrp_project_app_detail.document_id");
 		
-		$this->data['jrp_book_circuit_schedules'] = $this->model_jrp_book_circuit_schedule->get($filter, $field, $this->limit_page, $offset, $select_fields);
-		$this->data['jrp_book_circuit_schedule_counts'] = $this->model_jrp_book_circuit_schedule->count_all($filter, $field);
+		$this->data['jrp_book_circuit_schedules'] = $this->model_jrp_book_circuit_schedule->get($filter, $field,$parent_field, $this->limit_page, $offset, $select_fields);
+		$this->data['jrp_book_circuit_schedule_counts'] = $this->model_jrp_book_circuit_schedule->count_all($filter, $field,$parent_field);
 
 		$config = [
 			'base_url'     => 'administrator/jrp_book_circuit_schedule/index/'.$projectId.'/',

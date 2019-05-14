@@ -71,7 +71,7 @@ jQuery(document).ready(domo);
                      <h5 class="widget-user-desc"><?= cclang('list_all', ['Fixture Detail']); ?>  <i class="label bg-yellow"><?= $jrp_book_fixture_detail_counts; ?>  <?= cclang('items'); ?></i></h5>
                   </div>
 
-                  <form name="form_jrp_book_fixture_detail" id="form_jrp_book_fixture_detail" action="<?= base_url('administrator/jrp_book_fixture_detail/index'); ?>">
+                  <form name="form_jrp_book_fixture_detail" id="form_jrp_book_fixture_detail" action="<?= base_url("administrator/jrp_book_fixture_detail/index/$project_id"); ?>">
                   
 
                   <div class="table-responsive"> 
@@ -149,7 +149,7 @@ jQuery(document).ready(domo);
                         </button>
                      </div>
                      <div class="col-sm-1 padd-left-0 ">
-                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url('administrator/jrp_book_fixture_detail');?>" title="<?= cclang('reset_filter'); ?>">
+                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url("administrator/jrp_book_fixture_detail/index/$project_id");?>" title="<?= cclang('reset_filter'); ?>">
                         <i class="fa fa-undo"></i>
                         </a>
                      </div>

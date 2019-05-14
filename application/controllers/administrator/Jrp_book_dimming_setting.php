@@ -28,13 +28,15 @@ class Jrp_book_dimming_setting extends Admin
 	{
 		$this->is_allowed('jrp_book_dimming_setting_list');
 
-		$filter = $projectId;//$this->input->get('q');
-		$field 	= 'project_id';//$this->input->get('f');
+        $filter = $this->input->get('q');
+        $field 	= $this->input->get('f');
+
+        $parent_field = $projectId;
 		
 		$fields = array('jrp_book_dimming_setting.*','jrp_book_circuit.circuit');
 		
-		$this->data['jrp_book_dimming_settings'] = $this->model_jrp_book_dimming_setting->get($filter, $field, $this->limit_page, $offset,$fields);
-		$this->data['jrp_book_dimming_setting_counts'] = $this->model_jrp_book_dimming_setting->count_all($filter, $field);
+		$this->data['jrp_book_dimming_settings'] = $this->model_jrp_book_dimming_setting->get($filter, $field,$parent_field, $this->limit_page, $offset,$fields);
+		$this->data['jrp_book_dimming_setting_counts'] = $this->model_jrp_book_dimming_setting->count_all($filter, $field,$parent_field);
 
 		$this->data['project_id'] = $projectId;
 		$config = [

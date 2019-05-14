@@ -28,13 +28,15 @@ class Jrp_book_fixture_detail extends Admin
 	{
 		$this->is_allowed('jrp_book_fixture_detail_list');
 
-		$filter = $projectId;
-		$field 	= 'project_id';
+        $filter = $this->input->get('q');
+        $field 	= $this->input->get('f');
+
+        $parent_field = $projectId;
 		
 		$select_fields = array('jrp_book_fixture_detail.*');
 
-		$this->data['jrp_book_fixture_details'] = $this->model_jrp_book_fixture_detail->get($filter, $field, $this->limit_page, $offset,$select_fields);
-		$this->data['jrp_book_fixture_detail_counts'] = $this->model_jrp_book_fixture_detail->count_all($filter, $field);
+		$this->data['jrp_book_fixture_details'] = $this->model_jrp_book_fixture_detail->get($filter, $field,$parent_field, $this->limit_page, $offset,$select_fields);
+		$this->data['jrp_book_fixture_detail_counts'] = $this->model_jrp_book_fixture_detail->count_all($filter, $field,$parent_field);
 		
 		$this->data['project_id'] = $projectId;
 		

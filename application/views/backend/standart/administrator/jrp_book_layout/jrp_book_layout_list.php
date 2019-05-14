@@ -71,7 +71,7 @@ jQuery(document).ready(domo);
                      <h5 class="widget-user-desc"><?= cclang('list_all', ['Book Layout']); ?>  <i class="label bg-yellow"><?= $jrp_book_layout_counts; ?>  <?= cclang('items'); ?></i></h5>
                   </div>
 
-                  <form name="form_jrp_book_layout" id="form_jrp_book_layout" action="<?= base_url('administrator/jrp_book_layout/index'); ?>">
+                  <form name="form_jrp_book_layout" id="form_jrp_book_layout" action="<?= base_url("administrator/jrp_book_layout/index/$project_id"); ?>">
                   
 
                   <div class="table-responsive"> 
@@ -138,7 +138,7 @@ jQuery(document).ready(domo);
                      <div class="col-sm-2 padd-left-0 ">
                         <button type="button" class="btn btn-flat" name="apply" id="apply" title="<?= cclang('apply_bulk_action'); ?>"><?= cclang('apply_button'); ?></button>
                      </div>
-<!--
+
                      <div class="col-sm-3 padd-left-0  " >
                         <input type="text" class="form-control" name="q" id="filter" placeholder="<?= cclang('filter'); ?>" value="<?= $this->input->get('q'); ?>">
                      </div>
@@ -155,11 +155,11 @@ jQuery(document).ready(domo);
                         </button>
                      </div>
                      <div class="col-sm-1 padd-left-0 ">
-                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url('administrator/jrp_book_layout');?>" title="<?= cclang('reset_filter'); ?>">
+                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url("administrator/jrp_book_layout/index/$project_id");?>" title="<?= cclang('reset_filter'); ?>">
                         <i class="fa fa-undo"></i>
                         </a>
                      </div>
--->
+
                   </div>
                   </form>                  <div class="col-md-4">
                      <div class="dataTables_paginate paging_simple_numbers pull-right" id="example2_paginate" >

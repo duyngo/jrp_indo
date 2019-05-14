@@ -5,7 +5,7 @@ class Model_jrp_book_circuit extends MY_Model {
 
 	private $primary_key 	= 'id';
 	private $table_name 	= 'jrp_book_circuit';
-	private $field_search 	= ['project_Id', 'layout_id', 'circuit', 'quantity', 'circuit_desc'];
+	private $field_search 	= ['layout_id', 'circuit', 'quantity', 'circuit_desc'];//'project_Id'
 
 	public function __construct()
 	{
@@ -18,7 +18,7 @@ class Model_jrp_book_circuit extends MY_Model {
 		parent::__construct($config);
 	}
 
-	public function count_all($q = null, $field = null)
+	public function count_all($q = null, $field = null, $parent_field=null)
 	{
 		$iterasi = 1;
         $num = count($this->field_search);
@@ -36,9 +36,9 @@ class Model_jrp_book_circuit extends MY_Model {
 	            $iterasi++;
 	        }
 
-	        $where = '('.$where.')';
+            $where = "($where AND $this->table_name.project_id LIKE '%$parent_field%')";
         } else {
-        	$where .= "(" . "jrp_book_circuit.".$field . " LIKE '%" . $q . "%' )";
+            $where .= "($this->table_name.$field  LIKE '%$q%' AND $this->table_name.project_id LIKE '%$parent_field%')";
         }
 
 		$this->join_avaiable();
@@ -48,7 +48,7 @@ class Model_jrp_book_circuit extends MY_Model {
 		return $query->num_rows();
 	}
 
-	public function get($q = null, $field = null, $limit = 0, $offset = 0, $select_field = [])
+	public function get($q = null, $field = null,$parent_field=null, $limit = 0, $offset = 0, $select_field = [])
 	{
 		$iterasi = 1;
         $num = count($this->field_search);
@@ -66,9 +66,9 @@ class Model_jrp_book_circuit extends MY_Model {
 	            $iterasi++;
 	        }
 
-	        $where = '('.$where.')';
+            $where = "($where AND $this->table_name.project_id LIKE '%$parent_field%')";
         } else {
-        	$where .= "(" . "jrp_book_circuit.".$field . " LIKE '%" . $q . "%' )";
+            $where .= "($this->table_name.$field  LIKE '%$q%' AND $this->table_name.project_id LIKE '%$parent_field%')";
         }
 
         if (is_array($select_field) AND count($select_field)) {

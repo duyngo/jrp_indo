@@ -71,7 +71,7 @@ jQuery(document).ready(domo);
                      <h5 class="widget-user-desc"><?= cclang('list_all', ['Application Detail']); ?>  <i class="label bg-yellow"><?= $jrp_project_app_detail_counts; ?>  <?= cclang('items'); ?></i></h5>
                   </div>
 
-                  <form name="form_jrp_project_app_detail" id="form_jrp_project_app_detail" action="<?= base_url('administrator/jrp_project_app_detail/index/').$project_id; ?>">
+                  <form name="form_jrp_project_app_detail" id="form_jrp_project_app_detail" action="<?= base_url("administrator/jrp_project_app_detail/index/$project_id"); ?>">
                   
 
                   <div class="table-responsive"> 
@@ -150,7 +150,7 @@ jQuery(document).ready(domo);
                         </button>
                      </div>
                      <div class="col-sm-1 padd-left-0 ">
-                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url('administrator/jrp_project_app_detail');?>" title="<?= cclang('reset_filter'); ?>">
+                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url("administrator/jrp_project_app_detail/index/$project_id");?>" title="<?= cclang('reset_filter'); ?>">
                         <i class="fa fa-undo"></i>
                         </a>
                      </div>

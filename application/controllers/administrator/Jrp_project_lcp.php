@@ -28,13 +28,15 @@ class Jrp_project_lcp extends Admin
 	{
 		$this->is_allowed('jrp_project_lcp_list');
 
-		$filter = $projectId;//$this->input->get('q');
-		$field 	= 'project_id';//$this->input->get('f');
+        $filter = $this->input->get('q');
+        $field 	= $this->input->get('f');
+
+        $parent_field = $projectId;
 		
 		$fields = array('jrp_project_lcp.*');
 
-		$this->data['jrp_project_lcps'] = $this->model_jrp_project_lcp->get($filter, $field, $this->limit_page, $offset,$fields);
-		$this->data['jrp_project_lcp_counts'] = $this->model_jrp_project_lcp->count_all($filter, $field);
+		$this->data['jrp_project_lcps'] = $this->model_jrp_project_lcp->get($filter, $field,$parent_field, $this->limit_page, $offset,$fields);
+		$this->data['jrp_project_lcp_counts'] = $this->model_jrp_project_lcp->count_all($filter, $field,$parent_field);
 		$this->data['project_id'] = $projectId;
 
 		$config = [

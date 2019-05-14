@@ -71,7 +71,7 @@ jQuery(document).ready(domo);
                      <h5 class="widget-user-desc"><?= cclang('list_all', ['Book Circuit']); ?>  <i class="label bg-yellow"><?= $jrp_book_circuit_counts; ?>  <?= cclang('items'); ?></i></h5>
                   </div>
 
-                  <form name="form_jrp_book_circuit" id="form_jrp_book_circuit" action="<?= base_url('administrator/jrp_book_circuit/index'); ?>">
+                  <form name="form_jrp_book_circuit" id="form_jrp_book_circuit" action="<?= base_url("administrator/jrp_book_circuit/index/$project_id"); ?>">
                   
 
                   <div class="table-responsive"> 
@@ -144,7 +144,7 @@ jQuery(document).ready(domo);
                      <div class="col-sm-3 padd-left-0 " >
                         <select type="text" class="form-control chosen chosen-select" name="f" id="field" >
                            <option value=""><?= cclang('all'); ?></option>
-                            <option <?= $this->input->get('f') == 'project_Id' ? 'selected' :''; ?> value="project_Id">Project Id</option>
+
                            <option <?= $this->input->get('f') == 'layout_id' ? 'selected' :''; ?> value="layout_id">Layout Id</option>
                            <option <?= $this->input->get('f') == 'circuit' ? 'selected' :''; ?> value="circuit">Circuit</option>
                            <option <?= $this->input->get('f') == 'quantity' ? 'selected' :''; ?> value="quantity">Quantity</option>
@@ -157,7 +157,7 @@ jQuery(document).ready(domo);
                         </button>
                      </div>
                      <div class="col-sm-1 padd-left-0 ">
-                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url('administrator/jrp_book_circuit');?>" title="<?= cclang('reset_filter'); ?>">
+                        <a class="btn btn-default btn-flat" name="reset" id="reset" value="Apply" href="<?= base_url("administrator/jrp_book_circuit/index/$project_id");?>" title="<?= cclang('reset_filter'); ?>">
                         <i class="fa fa-undo"></i>
                         </a>
                      </div>

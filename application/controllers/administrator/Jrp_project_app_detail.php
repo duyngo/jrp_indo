@@ -32,12 +32,12 @@ class Jrp_project_app_detail extends Admin
         $filter = $this->input->get('q');
         $field 	= $this->input->get('f');
 
-		$static_field = $projectId;
+		$parent_field = $projectId;
 		
 		$select_fields = array('jrp_project_app_detail.*');
 
-		$this->data['jrp_project_app_details'] = $this->model_jrp_project_app_detail->get($filter, $field,$static_field, $this->limit_page, $offset,$select_fields);
-		$this->data['jrp_project_app_detail_counts'] = $this->model_jrp_project_app_detail->count_all($filter, $field);
+		$this->data['jrp_project_app_details'] = $this->model_jrp_project_app_detail->get($filter, $field,$parent_field, $this->limit_page, $offset,$select_fields);
+		$this->data['jrp_project_app_detail_counts'] = $this->model_jrp_project_app_detail->count_all($filter, $field,$parent_field);
 		
 		$this->data['project_id'] = $projectId;
 		$config = [

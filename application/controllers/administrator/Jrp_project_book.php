@@ -238,6 +238,8 @@ class Jrp_project_book extends Admin
 
 		$this->data['jrp_project_book'] = $this->model_jrp_project_book->join_avaiable()->find($id);
 
+		$this->data['alphabet'] = array('/','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+
 		$this->template->title('Project Book Detail');
 		$this->render('backend/standart/administrator/jrp_project_book/jrp_project_book_view', $this->data);
 	}
@@ -370,6 +372,15 @@ class Jrp_project_book extends Admin
 
 		$this->model_jrp_project_book->pdf_schedule_note($project);
 	}
+
+    public function export_pdf_cover($project_id)
+    {
+        $this->is_allowed('jrp_book_layout_export');
+
+        $project = $this->model_jrp_project_book->get_single("id = ".$project_id);
+
+        $this->model_jrp_project_book->pdf_cover($project);
+    }
 	
 	
 	public function export_pdf_circuit_schedule($project_id)

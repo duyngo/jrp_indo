@@ -385,6 +385,30 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->writeHTML($content);
         $this->pdf->Output('fixtures_note.pdf', 'H');
     }
+    public function pdf_cover($project)
+    {
+        $this->load->library('HtmlPdf');
+
+        $config = array(
+            'orientation' => 'p',
+            'format' => 'a4',
+            'marges' => array(15, 15, 15, 15)
+        );
+
+        $this->pdf = new HtmlPdf($config);
+
+
+        $content = $this->pdf->loadHtmlPdf('core_template/pdf/cover', [
+            'project_name' => $project->name
+        ], TRUE);
+
+        //var_dump($content);die;
+
+        $this->pdf->initialize($config);
+        $this->pdf->pdf->SetDisplayMode('fullpage');
+        $this->pdf->writeHTML($content);
+        $this->pdf->Output('fixtures_note.pdf', 'H');
+    }
     
     public function pdf_circuit_schedule($table, $title, $project)
     {

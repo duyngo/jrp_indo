@@ -48,7 +48,10 @@ class Jrp_book_layout extends Admin
 
 		$this->data['pagination'] = $this->pagination($config);
 
-		$this->template->title('Book Layout List');
+        $this->data['alphabet'] = array('/','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+
+
+        $this->template->title('Book Layout List');
 		$this->render('backend/standart/administrator/jrp_book_layout/jrp_book_layout_list', $this->data);
 	}
 	
@@ -309,45 +312,24 @@ class Jrp_book_layout extends Admin
 	}
 	
 	
-	public function next_revision($layout_id)
+	public function next_revision()
 	{
-		
-		$total_revision = $this->model_jrp_book_layout_history->count_all($layout_id,'layout_id');
-		if($total_revision == 0) {
-			$save_data = [
-				'layout_id' => $layout_id,
-				'date' => date('Y-m-d'),
-				'revision_no' => '/',
-			];
-			
-			$save_jrp_book_layout_history = $this->model_jrp_book_layout_history->store($save_data);
-			
-			if ($save_jrp_book_layout_history) {
-				$save_layout = [
-					'revision' => $save_jrp_book_layout_history
-				];
 
-			
-				$save_jrp_book_layout = $this->model_jrp_book_layout->change($layout_id, $save_layout);
-				if($save_jrp_book_layout) {
-					set_message(
-						'Revision success', 'success');
-				}
-				else {
-					set_message(
-						'Revision failed', 'failed');
-				}
-				
-			} else {
-				set_message(
-						'Revision failed', 'failed');
-			}
-		} 
-		else {
-			
-		}
-		
-		redirect_back();
+        //$this->is_allowed('jrp_book_layout_revision');
+	    //var_dump($_POST);die;
+        $layout_id = $_POST['id'];
+        $revision = $_POST['revision'];
+
+        //change revision
+        $save_layout = [
+            'revision' => $revision
+        ];
+
+        $save_jrp_book_layout = $this->model_jrp_book_layout->change($layout_id, $save_layout);
+
+
+        echo 'success';
+		exit();
 	}
 }
 

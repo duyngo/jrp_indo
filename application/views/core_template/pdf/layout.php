@@ -38,6 +38,9 @@
 			<th style="width:400px">
 				Title
 			</th>
+                <th style="width:50px">
+                    Revision
+                </th>
 			</tr>
 		</thead>
 		<tbody>

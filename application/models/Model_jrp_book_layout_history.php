@@ -47,6 +47,13 @@ class Model_jrp_book_layout_history extends MY_Model {
 
 		return $query->num_rows();
 	}
+	public function update_by_field($field_name,$field_val, $data){
+        $this->db->where($field_name, $field_val);
+        $this->db->update($this->table_name, $data);
+
+        return $this->db->affected_rows();
+
+}
 
 	public function get($q = null, $field = null, $limit = 0, $offset = 0, $select_field = [])
 	{

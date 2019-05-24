@@ -58,9 +58,7 @@ jQuery(document).ready(domo);
                         <?php is_allowed('jrp_mstr_load_type_export', function(){?>
                         <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> Jrp Mstr Load Type" href="<?= site_url('administrator/jrp_mstr_load_type/export'); ?>"><i class="fa fa-file-excel-o" ></i> <?= cclang('export'); ?> XLS</a>
                         <?php }) ?>
-                        <?php is_allowed('jrp_mstr_load_type_export', function(){?>
-                        <a class="btn btn-flat btn-success" title="<?= cclang('export'); ?> pdf Jrp Mstr Load Type" href="<?= site_url('administrator/jrp_mstr_load_type/export_pdf'); ?>"><i class="fa fa-file-pdf-o" ></i> <?= cclang('export'); ?> PDF</a>
-                        <?php }) ?>
+
                      </div>
                      <div class="widget-user-image">
                         <img class="img-circle" src="<?= BASE_ASSET; ?>/img/list.png" alt="User Avatar">

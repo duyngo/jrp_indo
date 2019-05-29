@@ -312,7 +312,7 @@ class Jrp_book_layout extends Admin
 	}
 	
 	
-	public function next_revision()
+	public function change_revision()
 	{
 
         //$this->is_allowed('jrp_book_layout_revision');
@@ -322,6 +322,7 @@ class Jrp_book_layout extends Admin
 
         //change revision
         $save_layout = [
+            'date_revision' => date('Y-m-d'),
             'revision' => $revision
         ];
 
@@ -331,6 +332,46 @@ class Jrp_book_layout extends Admin
         echo 'success';
 		exit();
 	}
+    public function next_revision($layout_id)
+    {
+
+        $total_revision = $this->model_jrp_book_layout_history->count_all($layout_id,'layout_id');
+        if($total_revision == 0) {
+            $save_data = [
+                'layout_id' => $layout_id,
+                'date' => date('Y-m-d'),
+                'revision_no' => '/',
+            ];
+
+            $save_jrp_book_layout_history = $this->model_jrp_book_layout_history->store($save_data);
+
+            if ($save_jrp_book_layout_history) {
+                $save_layout = [
+                    'revision' => $save_jrp_book_layout_history
+                ];
+
+
+                $save_jrp_book_layout = $this->model_jrp_book_layout->change($layout_id, $save_layout);
+                if($save_jrp_book_layout) {
+                    set_message(
+                        'Revision success', 'success');
+                }
+                else {
+                    set_message(
+                        'Revision failed', 'failed');
+                }
+
+            } else {
+                set_message(
+                    'Revision failed', 'failed');
+            }
+        }
+        else {
+
+        }
+
+        redirect_back();
+    }
 }
 
 

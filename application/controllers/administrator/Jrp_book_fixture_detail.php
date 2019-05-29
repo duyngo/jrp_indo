@@ -47,11 +47,34 @@ class Jrp_book_fixture_detail extends Admin
 			'uri_segment'  => 5,
 		];
 
+        $this->data['alphabet'] = array('/','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+
 		$this->data['pagination'] = $this->pagination($config);
 
 		$this->template->title('Fixture Detail List');
 		$this->render('backend/standart/administrator/jrp_book_fixture_detail/jrp_book_fixture_detail_list', $this->data);
 	}
+
+    public function change_revision()
+    {
+
+        //$this->is_allowed('jrp_book_layout_revision');
+        //var_dump($_POST);die;
+        $table_id = $_POST['id'];
+        $revision = $_POST['revision'];
+
+        //change revision
+        $save_layout = [
+            'date_revision' => date('Y-m-d'),
+            'revision' => $revision
+        ];
+
+        $save_jrp_book_layout = $this->model_jrp_book_fixture_detail->change($table_id, $save_layout);
+
+
+        echo 'success';
+        exit();
+    }
 	
 	/**
 	* Add new jrp_book_fixture_details

@@ -238,6 +238,44 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->writeHTML($content);
         $this->pdf->Output($table.'.pdf', 'H');
     }
+
+    public function pdf_agent($table, $title, $project)
+    {
+        $this->load->library('HtmlPdf');
+
+        $config = array(
+            'orientation' => 'l',
+            'format' => 'a4',
+            'marges' => array(15, 15, 15, 15)
+        );
+
+        $this->pdf = new HtmlPdf($config);
+
+        $sql_query = " SELECT DISTINCT manu.`name`, manu.`contact_person`,manu.`contact_email`, manu.`contact_phone`,manu.`contact_address`
+                        FROM jrp_book_circuit_schedule AS book_fix 
+                        INNER JOIN jrp_fixture_component AS fix_compo ON (fix_compo.`fixture_id` = book_fix.`fixtures`)
+                        INNER JOIN jrp_component AS compo ON (compo.`id` = fix_compo.`component_id`)
+                        INNER JOIN jrp_manufacturer AS manu ON (manu.id = compo.`manufacturer`)
+                        WHERE book_fix.`project_id` = $project->id
+                      ";
+
+        $result = $this->db->query($sql_query);
+
+        $fields = $result->list_fields();
+
+
+        $content = $this->pdf->loadHtmlPdf('core_template/pdf/agent', [
+            'results' => $result->result(),
+            'fields' => $fields,
+            'title' => $title,
+            'project_name' => $project->name
+        ], TRUE);
+
+        $this->pdf->initialize($config);
+        $this->pdf->pdf->SetDisplayMode('fullpage');
+        $this->pdf->writeHTML($content);
+        $this->pdf->Output($table.'.pdf', 'H');
+    }
     
     public function pdf_fixture_qty($table, $title, $project)
     {

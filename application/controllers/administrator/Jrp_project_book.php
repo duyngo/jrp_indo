@@ -329,6 +329,15 @@ class Jrp_project_book extends Admin
 		$this->model_jrp_project_book->pdf_circuit_qty('jrp_book_circuit','Circuit Quantities',$project);
 	}
 
+    public function export_pdf_agent($project_id)
+    {
+        //$this->is_allowed('jrp_book_layout_export');
+
+        $project = $this->model_jrp_project_book->get_single("id = ".$project_id);
+
+        $this->model_jrp_project_book->pdf_agent('jrp_book_circuit_schedule','Agent List',$project);
+    }
+
     public function export_pdf_lcp($project_id)
     {
         $this->is_allowed('jrp_book_layout_export');

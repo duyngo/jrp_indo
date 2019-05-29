@@ -83,6 +83,7 @@ jQuery(document).ready(domo);
                            </th>
                            <th>Document Id</th>
                            <th>Title</th>
+                            <th>Revision</th>
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -94,7 +95,16 @@ jQuery(document).ready(domo);
                            </td>
                            
                            <td><?= _ent($jrp_book_fixture_detail->document_id); ?></td> 
-                           <td><?= _ent($jrp_book_fixture_detail->title); ?></td> 
+                           <td><?= _ent($jrp_book_fixture_detail->title); ?></td>
+                            <td>
+                                <select type="text" style="width:100px;" class="form-control select_revision" data-id="<?=$jrp_book_fixture_detail->id?>" name="select_revision" placeholder="Site Email" >
+
+                                    <?php foreach($alphabet as $alpha){?>
+                                        <option value="<?=$alpha?>" <?= ($jrp_book_fixture_detail->revision == $alpha)?"selected":""?> ><?=$alpha?></option>
+                                    <?php }?>
+
+                                </select>
+                            </td>
                            <td width="200">
                               <?php is_allowed('jrp_book_fixture_detail_view', function($jrp_book_fixture_detail) use ($jrp_book_fixture_detail){?>
                               <a href="<?= site_url('administrator/jrp_book_fixture_detail/view/' . $jrp_book_fixture_detail->id); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> <?= cclang('view_button'); ?>
@@ -167,6 +177,13 @@ jQuery(document).ready(domo);
       </div>
    </div>
 </section>
+<?= form_open('', [
+    'name'    => 'form_csrf_ajax',
+    'class'   => 'form-horizontal',
+    'id'      => 'form_csrf_ajax',
+    'enctype' => 'multipart/form-data',
+    'method'  => 'POST'
+]); ?>
 <!-- /.content -->
 
 <!-- Page script -->
@@ -196,6 +213,41 @@ jQuery(document).ready(domo);
 
       return false;
     });
+
+      $('.select_revision').on('change',function () {
+          console.log('helooo'+$(this).val());
+          console.log('helooo'+$(this).attr('data-id'));
+          var revision = $(this).val();
+          var id = $(this).attr('data-id');
+          var form_csrf = $('#form_csrf_ajax');
+          var data_post = form_csrf.serializeArray();
+          data_post.push({name: 'revision', value: revision});
+          data_post.push({name: 'id', value: id});
+
+          $.ajax({
+              url: BASE_URL + 'administrator/jrp_book_fixture_detail/change_revision',
+              type: 'POST',
+              dataType: 'json',
+              data: data_post,
+          })
+              .done(function(res) {
+                  if(res.success) {
+                      console.log('post success');
+
+                  } else {
+                      $('.message').printMessage({message : res.message, type : 'warning'});
+                  }
+
+              })
+              .fail(function() {
+                  $('.message').printMessage({message : 'Error save data', type : 'warning'});
+              })
+              .always(function() {
+                  $('.loading').hide();
+                  $('html, body').animate({ scrollTop: $(document).height() }, 2000);
+              });
+
+      });
 
 
     $('#apply').click(function(){

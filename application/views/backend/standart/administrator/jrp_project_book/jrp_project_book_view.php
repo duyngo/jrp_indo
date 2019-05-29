@@ -119,6 +119,7 @@ jQuery(document).ready(domo);
 			                     	<a target="_blank" href="<?= base_url('administrator/jrp_book_layout/export_pdf_layout/');?><?= _ent($jrp_project_book->id); ?>">Layout Download</a><br>
                            <a target="_blank" href="<?= base_url('administrator/jrp_project_app_detail/export_pdf_layout/');?><?= _ent($jrp_project_book->id); ?>">App. Detail Download</a><br>
                             <a target="_blank" href="<?= base_url('administrator/jrp_book_fixture_detail/export_pdf_layout/');?><?= _ent($jrp_project_book->id); ?>">Fixture Detail Download</a><br>
+                                    <a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_agent/$jrp_project_book->id");?>">Agent List Download</a><br>
 
 		                     	</td>
 		                     	<td>

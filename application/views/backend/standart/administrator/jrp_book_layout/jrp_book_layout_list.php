@@ -184,9 +184,9 @@ jQuery(document).ready(demo);
    </div>
 </section>
 <?= form_open('', [
-    'name'    => 'form_jrp_book_layout_ajax',
+    'name'    => 'form_csrf_ajax',
     'class'   => 'form-horizontal',
-    'id'      => 'form_jrp_book_layout_ajax',
+    'id'      => 'form_csrf_ajax',
     'enctype' => 'multipart/form-data',
     'method'  => 'POST'
 ]); ?>
@@ -270,13 +270,13 @@ jQuery(document).ready(demo);
           console.log('helooo'+$(this).attr('data-id'));
           var revision = $(this).val();
           var id = $(this).attr('data-id');
-          var form_jrp_book_layout = $('#form_jrp_book_layout_ajax');
-          var data_post = form_jrp_book_layout.serializeArray();
+          var form_csrf = $('#form_csrf_ajax');
+          var data_post = form_csrf.serializeArray();
           data_post.push({name: 'revision', value: revision});
           data_post.push({name: 'id', value: id});
 
           $.ajax({
-              url: BASE_URL + 'administrator/jrp_book_layout/next_revision',
+              url: BASE_URL + 'administrator/jrp_book_layout/change_revision',
               type: 'POST',
               dataType: 'json',
               data: data_post,

@@ -103,7 +103,7 @@ class Model_jrp_book_layout extends MY_Model {
 
         $this->pdf = new HtmlPdf($config);
         
-        $this->db->select("pl.document_id as 'Document', pl.title as 'Title', IF(pl.revision IS NULL,'/',pl.revision) AS revision");
+        $this->db->select("pl.document_id as 'Document', pl.title as 'Title', IF(pl.revision IS NULL,'/',pl.revision) AS revision,DATE_FORMAT(IF(pl.date_revision IS NULL,NOW(),pl.date_revision),'%D %M %Y') AS date_revision");
         $this->db->from($table.' pl');
         $this->db->join('jrp_project_book pb','pl.project_id = pb.id');
         $this->db->where('pl.project_id = '.$project->id);

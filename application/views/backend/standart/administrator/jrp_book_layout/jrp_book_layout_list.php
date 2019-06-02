@@ -85,6 +85,7 @@ jQuery(document).ready(demo);
                            <th>Document Id</th>
                            <th>Title</th>
                            <th>Revision</th>
+                           <th>Date Revision</th>
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -106,6 +107,9 @@ jQuery(document).ready(demo);
 
                                </select>
                            </td>
+                            <td>
+                                <?=date("jS M Y",isset($jrp_book_layout->date_revision)?strtotime($jrp_book_layout->date_revision):time())?>
+                            </td>
                            <td width="200">
                               <?php is_allowed('jrp_book_layout_view', function($jrp_book_layout) use ($jrp_book_layout){?>
                               <a href="<?= site_url('administrator/jrp_book_layout/view/' . $jrp_book_layout->id); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> <?= cclang('view_button'); ?>

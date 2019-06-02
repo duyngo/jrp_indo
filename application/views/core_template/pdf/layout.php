@@ -41,6 +41,9 @@
                 <th style="width:50px">
                     Revision
                 </th>
+                <th style="width:50px">
+                    Date Revision
+                </th>
 			</tr>
 		</thead>
 		<tbody>

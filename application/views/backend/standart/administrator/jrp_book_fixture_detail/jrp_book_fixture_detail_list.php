@@ -105,6 +105,9 @@ jQuery(document).ready(domo);
 
                                 </select>
                             </td>
+                            <td>
+                                <?=date("jS M Y",isset($jrp_book_fixture_detail->date_revision)?strtotime($jrp_book_fixture_detail->date_revision):time())?>
+                            </td>
                            <td width="200">
                               <?php is_allowed('jrp_book_fixture_detail_view', function($jrp_book_fixture_detail) use ($jrp_book_fixture_detail){?>
                               <a href="<?= site_url('administrator/jrp_book_fixture_detail/view/' . $jrp_book_fixture_detail->id); ?>" class="label-default"><i class="fa fa-newspaper-o"></i> <?= cclang('view_button'); ?>

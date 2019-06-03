@@ -84,6 +84,7 @@ jQuery(document).ready(domo);
                            <th>Document Id</th>
                            <th>Title</th>
                             <th>Revision</th>
+                            <th>Date Revision</th>
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -104,6 +105,9 @@ jQuery(document).ready(domo);
                                     <?php }?>
 
                                 </select>
+                            </td>
+                            <td>
+                                <?=date("jS M Y",isset($jrp_project_app_detail->date_revision)?strtotime($jrp_project_app_detail->date_revision):time())?>
                             </td>
                              
                            <td width="200">

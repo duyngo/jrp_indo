@@ -27,18 +27,18 @@ class Model_jrp_book_layout extends MY_Model {
 		$field = $this->scurity($field);
 
         if (empty($field)) {
-	        foreach ($this->field_search as $field) {
-	            if ($iterasi == 1) {
-	                $where .= "jrp_book_layout.".$field . " LIKE '%" . $q . "%' ";
-	            } else {
-	                $where .= "OR " . "jrp_book_layout.".$field . " LIKE '%" . $q . "%' ";
-	            }
-	            $iterasi++;
-	        }
+            foreach ($this->field_search as $field) {
+                if ($iterasi == 1) {
+                    $where .= "jrp_book_layout.".$field . " LIKE '%" . $q . "%' ";
+                } else {
+                    $where .= "OR " . "jrp_book_layout.".$field . " LIKE '%" . $q . "%' ";
+                }
+                $iterasi++;
+            }
 
-            $where = "($where AND $this->table_name.project_id LIKE '%$parent_field%')";
+            $where = "( ($where) AND $this->table_name.project_id LIKE '%$parent_field%')";
         } else {
-            $where .= "($this->table_name.$field  LIKE '%$q%' AND $this->table_name.project_id LIKE '%$parent_field%')";
+            $where .= "( ($this->table_name.$field  LIKE '%$q%') AND $this->table_name.project_id LIKE '%$parent_field%')";
         }
 
 		$this->join_avaiable();
@@ -66,9 +66,9 @@ class Model_jrp_book_layout extends MY_Model {
 	            $iterasi++;
 	        }
 
-            $where = "($where AND $this->table_name.project_id LIKE '%$parent_field%')";
+            $where = "( ($where) AND $this->table_name.project_id LIKE '%$parent_field%')";
         } else {
-            $where .= "($this->table_name.$field  LIKE '%$q%' AND $this->table_name.project_id LIKE '%$parent_field%')";
+            $where .= "( ($this->table_name.$field  LIKE '%$q%') AND $this->table_name.project_id LIKE '%$parent_field%')";
         }
 
         if (is_array($select_field) AND count($select_field)) {
@@ -87,7 +87,7 @@ class Model_jrp_book_layout extends MY_Model {
 	public function join_avaiable() {
 
 		$this->db->join('jrp_project_book', 'jrp_project_book.id = jrp_book_layout.project_id', 'LEFT');
-	    $this->db->join('jrp_book_layout_history', 'jrp_book_layout_history.id = jrp_book_layout.revision', 'LEFT');	
+	    //$this->db->join('jrp_book_layout_history', 'jrp_book_layout_history.id = jrp_book_layout.revision', 'LEFT');
     	return $this;
 	}
 	

@@ -36,9 +36,9 @@ class Model_jrp_book_circuit_schedule extends MY_Model {
 	            $iterasi++;
 	        }
 
-            $where = "($where AND $this->table_name.project_id LIKE '%$parent_field%')";
+            $where = "( ($where) AND $this->table_name.project_id LIKE '%$parent_field%')";
         } else {
-            $where .= "($this->table_name.$field  LIKE '%$q%' AND $this->table_name.project_id LIKE '%$parent_field%')";
+            $where .= "( ($this->table_name.$field  LIKE '%$q%') AND $this->table_name.project_id LIKE '%$parent_field%')";
         }
 
 		$this->join_avaiable();
@@ -57,18 +57,18 @@ class Model_jrp_book_circuit_schedule extends MY_Model {
 		$field = $this->scurity($field);
 
         if (empty($field)) {
-	        foreach ($this->field_search as $field) {
-	            if ($iterasi == 1) {
-	                $where .= "jrp_book_circuit_schedule.".$field . " LIKE '%" . $q . "%' ";
-	            } else {
-	                $where .= "OR " . "jrp_book_circuit_schedule.".$field . " LIKE '%" . $q . "%' ";
-	            }
-	            $iterasi++;
-	        }
+            foreach ($this->field_search as $field) {
+                if ($iterasi == 1) {
+                    $where .= "jrp_book_circuit_schedule.".$field . " LIKE '%" . $q . "%' ";
+                } else {
+                    $where .= "OR " . "jrp_book_circuit_schedule.".$field . " LIKE '%" . $q . "%' ";
+                }
+                $iterasi++;
+            }
 
-            $where = "($where AND $this->table_name.project_id LIKE '%$parent_field%')";
+            $where = "( ($where) AND $this->table_name.project_id LIKE '%$parent_field%')";
         } else {
-            $where .= "($this->table_name.$field  LIKE '%$q%' AND $this->table_name.project_id LIKE '%$parent_field%')";
+            $where .= "( ($this->table_name.$field  LIKE '%$q%') AND $this->table_name.project_id LIKE '%$parent_field%')";
         }
 
         if (is_array($select_field) AND count($select_field)) {

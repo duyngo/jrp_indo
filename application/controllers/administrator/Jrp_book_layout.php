@@ -35,7 +35,7 @@ class Jrp_book_layout extends Admin
 
         $parent_field = $projectId;
 
-		$select_fields = array('jrp_book_layout.*, jrp_book_layout_history.revision_no');
+		$select_fields = array('jrp_book_layout.*');
 		$this->data['jrp_book_layouts'] = $this->model_jrp_book_layout->get($filter, $field,$parent_field, $this->limit_page, $offset,$select_fields);
 		$this->data['jrp_book_layout_counts'] = $this->model_jrp_book_layout->count_all($filter, $field,$parent_field);
 		$this->data['project_id']=$projectId;

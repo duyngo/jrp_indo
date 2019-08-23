@@ -88,7 +88,7 @@ jQuery(document).ready(domo);
                            <th>Area</th>
                            <th>Control Area Name</th>
                            <th>Note</th>
-                           <th>Project Id</th>
+                           <th>LCP finish</th>
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -106,7 +106,7 @@ jQuery(document).ready(domo);
                            <td><?= _ent($jrp_project_lcp->area); ?></td> 
                            <td><?= _ent($jrp_project_lcp->control_area_name); ?></td> 
                            <td><?= _ent($jrp_project_lcp->note); ?></td> 
-                           <td><?= _ent($jrp_project_lcp->name); ?></td>
+                           <td><?= _ent($jrp_project_lcp->lcp_finish); ?></td>
                              
                            <td width="200">
                               <?php is_allowed('jrp_project_lcp_view', function($jrp_project_lcp) use ($jrp_project_lcp){?>

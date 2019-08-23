@@ -87,7 +87,7 @@ class Jrp_project_lcp extends Admin
 		$this->form_validation->set_rules('area', 'Area', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('control_area_name', 'Control Area Name', 'trim|required|max_length[128]');
 		$this->form_validation->set_rules('note', 'Note', 'trim|required|max_length[256]');
-		$this->form_validation->set_rules('project_id', 'Project Id', 'trim|required');
+        $this->form_validation->set_rules('lcp_finish', 'lcp finish', 'trim|required|max_length[64]');
 		
 
 		if ($this->form_validation->run()) {
@@ -100,7 +100,7 @@ class Jrp_project_lcp extends Admin
 				'area' => $this->input->post('area'),
 				'control_area_name' => $this->input->post('control_area_name'),
 				'note' => $this->input->post('note'),
-				'project_id' => $this->input->post('project_id'),
+				'lcp_finish' => $this->input->post('lcp_finish'),
 			];
 
 			
@@ -179,7 +179,7 @@ class Jrp_project_lcp extends Admin
 		$this->form_validation->set_rules('area', 'Area', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('control_area_name', 'Control Area Name', 'trim|required|max_length[128]');
 		$this->form_validation->set_rules('note', 'Note', 'trim|required|max_length[256]');
-		$this->form_validation->set_rules('project_id', 'Project Id', 'trim|required');
+		$this->form_validation->set_rules('lcp_finish', 'lcp finish', 'trim|required|max_length[64]');
 		
 		if ($this->form_validation->run()) {
 		
@@ -191,7 +191,7 @@ class Jrp_project_lcp extends Admin
 				'area' => $this->input->post('area'),
 				'control_area_name' => $this->input->post('control_area_name'),
 				'note' => $this->input->post('note'),
-				'project_id' => $this->input->post('project_id'),
+				'lcp_finish' => $this->input->post('lcp_finish'),
 			];
 
 			

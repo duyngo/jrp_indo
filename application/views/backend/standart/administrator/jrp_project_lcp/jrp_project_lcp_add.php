@@ -61,13 +61,13 @@
                             'method'  => 'POST'
                             ]); ?>
                          
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="LCP_code" class="col-sm-2 control-label">LCP Code 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
 	                            <input type="hidden" name="project_id" id="project_id" value="<?= $project_id ?>"/>
-                                <input type="text" class="form-control" name="LCP_code" id="LCP_code" placeholder="LCP Code" value="<?= set_value('LCP_code'); ?>">
+                                <input type="text" class="form-control" name="LCP_code" id="LCP_code" placeholder="LCP Code" maxlength="64" value="<?= set_value('LCP_code'); ?>">
                                 <small class="info help-block">
                                 <b>Input LCP Code</b> Max Length : 64.</small>
                             </div>
@@ -78,7 +78,7 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="type" id="type" placeholder="Type" value="<?= set_value('type'); ?>">
+                                <input type="number" class="form-control" name="type" id="type" placeholder="Type" maxlength="11" value="<?= set_value('type'); ?>">
                                 <small class="info help-block">
                                 <b>Input Type</b> Max Length : 11.</small>
                             </div>
@@ -89,7 +89,7 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="lcp_layout" id="lcp_layout" placeholder="Lcp Layout" value="<?= set_value('lcp_layout'); ?>">
+                                <input type="text" class="form-control" name="lcp_layout" id="lcp_layout" placeholder="Lcp Layout" maxlength="128" value="<?= set_value('lcp_layout'); ?>">
                                 <small class="info help-block">
                                 <b>Input Lcp Layout</b> Max Length : 128.</small>
                             </div>
@@ -100,7 +100,7 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="location" id="location" placeholder="Location" value="<?= set_value('location'); ?>">
+                                <input type="text" class="form-control" name="location" id="location" placeholder="Location" maxlength="128" value="<?= set_value('location'); ?>">
                                 <small class="info help-block">
                                 <b>Input Location</b> Max Length : 128.</small>
                             </div>
@@ -111,7 +111,7 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" name="area" id="area" placeholder="Area" value="<?= set_value('area'); ?>">
+                                <input type="number" class="form-control" name="area" id="area" placeholder="Area" maxlength="11" value="<?= set_value('area'); ?>">
                                 <small class="info help-block">
                                 <b>Input Area</b> Max Length : 11.</small>
                             </div>
@@ -122,7 +122,7 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="control_area_name" id="control_area_name" placeholder="Control Area Name" value="<?= set_value('control_area_name'); ?>">
+                                <input type="text" class="form-control" name="control_area_name" id="control_area_name" placeholder="Control Area Name" maxlength="128" value="<?= set_value('control_area_name'); ?>">
                                 <small class="info help-block">
                                 <b>Input Control Area Name</b> Max Length : 128.</small>
                             </div>
@@ -133,28 +133,24 @@
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="note" id="note" placeholder="Note" value="<?= set_value('note'); ?>">
+                                <input type="text" class="form-control" name="note" id="note" placeholder="Note" maxlength="256" value="<?= set_value('note'); ?>">
                                 <small class="info help-block">
                                 <b>Input Note</b> Max Length : 256.</small>
                             </div>
                         </div>
-                                                 
-<!--
-                                                <div class="form-group ">
-                            <label for="project_id" class="col-sm-2 control-label">Project Id 
-                            <i class="required">*</i>
+
+                        <div class="form-group ">
+                            <label for="LCP_code" class="col-sm-2 control-label">LCP Finish
+                                <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="project_id" id="project_id" data-placeholder="Select Project Id" >
-                                    <option value=""></option>
-                                    <?php foreach (db_get_all_data('jrp_project_book') as $row): ?>
-                                    <option value="<?= $row->id ?>"><?= $row->name; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
+                                <input type="text" class="form-control" name="lcp_finish" id="lcp_finish" placeholder="LCP Code" maxlength="64" value="<?= set_value('lcp_finish'); ?>">
                                 <small class="info help-block">
-                                </small>
+                                    <b>Input LCP Finish</b> Max Length : 64.</small>
                             </div>
--->
+                        </div>
+                                                 
+
                         </div>
 
                                                 

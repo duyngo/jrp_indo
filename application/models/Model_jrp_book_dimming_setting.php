@@ -5,7 +5,7 @@ class Model_jrp_book_dimming_setting extends MY_Model {
 
 	private $primary_key 	= 'id';
 	private $table_name 	= 'jrp_book_dimming_setting';
-	private $field_search 	= ['circuit_id', 'scene_1', 'scene_2', 'scene_3', 'scene_4', 'scene_5', 'scene_6', 'note'];
+	private $field_search 	= ['layout_id','circuit_id', 'scene_1', 'scene_2', 'scene_3', 'scene_4', 'scene_5', 'scene_6', 'note'];
 
 	public function __construct()
 	{
@@ -87,9 +87,23 @@ class Model_jrp_book_dimming_setting extends MY_Model {
 	public function join_avaiable() {
 
 		$this->db->join('jrp_book_circuit', 'jrp_book_circuit.id = jrp_book_dimming_setting.circuit_id', 'LEFT');
+        $this->db->join('jrp_book_layout', 'jrp_book_layout.id = jrp_book_circuit.layout_id', 'LEFT');
 	    	
     	return $this;
 	}
+
+	public function get_list_layout($project_id){
+	    $sql_query = "SELECT dimming.layout_id,layout.document_id
+                        FROM jrp_book_dimming_setting AS dimming
+                        INNER JOIN jrp_book_layout as layout
+                        ON (dimming.layout_id = layout.id)
+                        WHERE dimming.project_id = $project_id
+                        GROUP BY dimming.layout_id";
+
+	    $result = $this->db->query($sql_query)->result();
+	    return $result;
+
+    }
 
 }
 

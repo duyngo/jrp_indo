@@ -24,7 +24,7 @@ class Jrp_project_lcp extends Admin
 	*
 	* @var $offset String
 	*/
-	public function index($projectId, $offset = 0)
+	public function index($projectId = 0, $offset = 0)
 	{
 		$this->is_allowed('jrp_project_lcp_list');
 
@@ -112,7 +112,7 @@ class Jrp_project_lcp extends Admin
 					$this->data['id'] 	   = $save_jrp_project_lcp;
 					$this->data['message'] = cclang('success_save_data_stay', [
 						anchor('administrator/jrp_project_lcp/edit/' . $save_jrp_project_lcp, 'Edit Jrp Project Lcp'),
-						anchor('administrator/jrp_project_lcp', ' Go back to list')
+						anchor('administrator/jrp_project_lcp/index/'.$this->input->post('project_id'), ' Go back to list')
 					]);
 				} else {
 					set_message(

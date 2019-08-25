@@ -33,7 +33,7 @@
 			<tr>
 				<th>Circuit</th>
 				<th>Feed From</th>
-				<th>Dimmer Rack</th>
+				<th>Dimming Rack</th>
 				<th>Qty</th>
 				<th>Fixtures</th>
 				<th>Watt</th>

@@ -251,7 +251,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $this->pdf = new HtmlPdf($config);
 
-        $sql_query = " SELECT DISTINCT manu.`name`, manu.`contact_person`,manu.`contact_email`, manu.`contact_phone`,manu.`contact_address`
+        $sql_query = " SELECT DISTINCT manu.`name` AS `Manufacturer Name`, manu.`contact_person`,manu.`contact_email`, manu.`contact_phone`,manu.`contact_address`
                         FROM jrp_book_circuit_schedule AS book_fix 
                         INNER JOIN jrp_fixture_component AS fix_compo ON (fix_compo.`fixture_id` = book_fix.`fixtures`)
                         INNER JOIN jrp_component AS compo ON (compo.`id` = fix_compo.`component_id`)
@@ -479,8 +479,8 @@ class Model_jrp_project_book extends MY_Model {
 		}
         
         $this->db->select("c.circuit, c.circuit_desc, cs.feed_from, cs.dim_rack, cs.quantity, f.code as fixture_code, lt.name AS load_name, c.layout_id, (select SUM(co.watt) from jrp_fixture_component fc
-JOIN jrp_component co ON fc.component_id = co.id
-WHERE fc.`fixture_id` = cs.fixtures) as watt");
+        JOIN jrp_component co ON fc.component_id = co.id
+        WHERE fc.`fixture_id` = cs.fixtures) as watt");
         $this->db->from($table.' cs');
         $this->db->join('jrp_project_book pb','cs.project_id = pb.id');
         $this->db->join('jrp_fixture f','cs.fixtures = f.id');

@@ -60,27 +60,10 @@
                             'enctype' => 'multipart/form-data', 
                             'method'  => 'POST'
                             ]); ?>
-                         
-<!--
-                                                <div class="form-group ">
-                            <label for="project_Id" class="col-sm-2 control-label">Project Id 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="project_Id" id="project_Id" data-placeholder="Select Project Id" >
-                                    <option value=""></option>
-                                    <?php foreach (db_get_all_data('jrp_project_book') as $row): ?>
-                                    <option <?= $project_id == $row->id ? 'selected' :''; ?>  value="<?= $row->id ?>"><?= $row->name; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
-                                <small class="info help-block">
-                                <b>Input Project Id</b> Max Length : 11.</small>
-                            </div>
-                        </div>
--->
+
 
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="layout_id" class="col-sm-2 control-label">Layout Id 
                             <i class="required">*</i>
                             </label>

@@ -198,7 +198,7 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/jrp_project_lcp';
+              window.location.href = BASE_URL + 'administrator/jrp_project_lcp/index/<?=$project_id?>';
             }
           });
     

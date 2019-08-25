@@ -51,6 +51,36 @@ class Jrp_book_dimming_setting extends Admin
 		$this->template->title('Dimming Setting List');
 		$this->render('backend/standart/administrator/jrp_book_dimming_setting/jrp_book_dimming_setting_list', $this->data);
 	}
+    public function view_layout($projectId, $offset = 0)
+    {
+        //$this->is_allowed('jrp_book_dimming_setting_list');
+
+        //$filter = $this->input->get('q');
+        //$field 	= $this->input->get('f');
+
+        $parent_field = $projectId;
+
+        $project_book = db_get_single_data('jrp_project_book','id='.$projectId);
+        $this->data['project_book'] = $project_book;
+
+        $list_layout = $this->model_jrp_book_dimming_setting->get_list_layout($projectId);
+        $this->data['list_layout'] = $list_layout;
+
+
+        $this->data['project_id'] = $projectId;
+
+//        $config = [
+//            'base_url'     => 'administrator/jrp_book_dimming_setting/index/',
+//            'total_rows'   => $this->model_jrp_book_dimming_setting->count_all($filter, $field),
+//            'per_page'     => $this->limit_page,
+//            'uri_segment'  => 4,
+//        ];
+
+        //$this->data['pagination'] = $this->pagination($config);
+
+        $this->template->title('Dimming Setting List Layout Id');
+        $this->render('backend/standart/administrator/jrp_book_dimming_setting/jrp_book_dimming_setting_list_layout', $this->data);
+    }
 	
 	/**
 	* Add new jrp_book_dimming_settings
@@ -80,6 +110,8 @@ class Jrp_book_dimming_setting extends Admin
 			exit;
 		}
 
+        $this->form_validation->set_rules('layout_id', 'layout Id', 'trim|required|max_length[11]');
+
 		$this->form_validation->set_rules('circuit_id', 'Circuit Id', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('scene_1', 'Scene 1', 'trim|max_length[64]');
 		$this->form_validation->set_rules('scene_2', 'Scene 2', 'trim|max_length[64]');
@@ -93,6 +125,7 @@ class Jrp_book_dimming_setting extends Admin
 		if ($this->form_validation->run()) {
 		
 			$save_data = [
+			    'layout_id' => $this->input->post('layout_id'),
 				'circuit_id' => $this->input->post('circuit_id'),
 				'scene_1' => $this->input->post('scene_1'),
 				'scene_2' => $this->input->post('scene_2'),
@@ -113,7 +146,7 @@ class Jrp_book_dimming_setting extends Admin
 					$this->data['id'] 	   = $save_jrp_book_dimming_setting;
 					$this->data['message'] = cclang('success_save_data_stay', [
 						anchor('administrator/jrp_book_dimming_setting/edit/' . $save_jrp_book_dimming_setting, 'Edit Jrp Book Dimming Setting'),
-						anchor('administrator/jrp_book_dimming_setting', ' Go back to list')
+						anchor('administrator/jrp_book_dimming_setting/index/'.$this->input->post('project_id'), ' Go back to list')
 					]);
 				} else {
 					set_message(

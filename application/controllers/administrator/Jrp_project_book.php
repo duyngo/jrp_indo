@@ -238,7 +238,7 @@ class Jrp_project_book extends Admin
 
 		$this->data['jrp_project_book'] = $this->model_jrp_project_book->join_avaiable()->find($id);
 
-		$this->data['alphabet'] = array('/','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+		$this->data['alphabet'] = array('/','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 
 		$this->template->title('Project Book Detail');
 		$this->render('backend/standart/administrator/jrp_project_book/jrp_project_book_view', $this->data);

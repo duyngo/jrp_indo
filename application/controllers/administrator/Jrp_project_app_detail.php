@@ -47,7 +47,7 @@ class Jrp_project_app_detail extends Admin
 			'uri_segment'  => 5,
 		];
 
-        $this->data['alphabet'] = array('/','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+        $this->data['alphabet'] = array('/','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 
 		$this->data['pagination'] = $this->pagination($config);
 

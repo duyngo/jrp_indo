@@ -91,8 +91,8 @@ jQuery(document).ready(domo);
                            </td>
                            <td>Total Circuit : <?= db_get_all_count('jrp_book_circuit','project_id ='.$jrp_project_book->id); ?> | <a href="/administrator/jrp_book_circuit/index/<?= $jrp_project_book->id ?>">Edit Circuit</a></td>
                            <td>Total Circuit Schedule : <?= db_get_all_count('jrp_book_circuit_schedule','project_id ='.$jrp_project_book->id); ?> | <a href="/administrator/jrp_book_circuit_schedule/index/<?= $jrp_project_book->id ?>">Edit C. Schedule</a></td>
-                           <td>Total LCP : <?= db_get_all_count('jrp_project_lcp','project_id ='.$jrp_project_book->id); ?> | <a href="/administrator/jrp_project_lcp/index/<?= $jrp_project_book->id ?>">Edit LCP</a><br>
-                           Total Dimming : <?= db_get_all_count('jrp_book_dimming_setting','project_id ='.$jrp_project_book->id); ?> | <a href="/administrator/jrp_book_dimming_setting/index/<?= $jrp_project_book->id ?>">Edit Dimming Setting</a></td>
+                           <td>Total LCP : <?= db_get_all_count('jrp_project_lcp'); ?> | <a href="/administrator/jrp_project_lcp/index/<?= $jrp_project_book->id ?>">Edit LCP</a><br>
+                           Total Dimming : <?= db_get_all_count('jrp_book_dimming_setting','project_id ='.$jrp_project_book->id); ?> | <a href="/administrator/jrp_book_dimming_setting/view_layout/<?= $jrp_project_book->id ?>">Edit Dimming Setting</a></td>
 		                     </tr>
 	                     </tbody>
 	                 </table>

@@ -61,8 +61,25 @@
                             'enctype' => 'multipart/form-data', 
                             'method'  => 'POST'
                             ]); ?>
+
+                        <div class="form-group ">
+                            <label for="layout_id" class="col-sm-2 control-label">Layout Id
+                                <i class="required">*</i>
+                            </label>
+                            <div class="col-sm-8">
+
+                                <select  class="form-control chosen chosen-select-deselect" name="layout_id" id="layout_id" data-placeholder="Select Layout Id" >
+                                    <option value=""></option>
+                                    <?php foreach (db_get_all_data('jrp_book_layout','project_id = '.$project_id) as $row): ?>
+                                        <option value="<?= $row->id ?>"><?= $row->document_id; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <small class="info help-block">
+                                    <b>Input Layout Id</b> Max Length : 11.</small>
+                            </div>
+                        </div>
                          
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="circuit_id" class="col-sm-2 control-label">Circuit Id 
                             <i class="required">*</i>
                             </label>
@@ -209,7 +226,7 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/jrp_book_dimming_setting';
+              window.location.href = BASE_URL + 'administrator/jrp_book_dimming_setting/index/<?=$project_id?>';
             }
           });
     

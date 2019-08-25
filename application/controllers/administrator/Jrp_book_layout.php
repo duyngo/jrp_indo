@@ -48,7 +48,7 @@ class Jrp_book_layout extends Admin
 
 		$this->data['pagination'] = $this->pagination($config);
 
-        $this->data['alphabet'] = array('/','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+        $this->data['alphabet'] = array('/','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 
 
         $this->template->title('Book Layout List');

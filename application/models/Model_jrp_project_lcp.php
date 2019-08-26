@@ -5,7 +5,7 @@ class Model_jrp_project_lcp extends MY_Model {
 
 	private $primary_key 	= 'id';
 	private $table_name 	= 'jrp_project_lcp';
-	private $field_search 	= ['LCP_code', 'type', 'lcp_layout', 'location', 'area', 'control_area_name', 'note', 'lcp_finish'];
+	private $field_search 	= ['LCP_code', 'type', 'lcp_layout', 'location', 'area', 'control_area_name', 'note', 'lcp_finish','project_id'];
 
 	public function __construct()
 	{
@@ -36,9 +36,9 @@ class Model_jrp_project_lcp extends MY_Model {
 	            $iterasi++;
 	        }
 
-            $where = " ($where) ";
+            $where = "( ($where) AND $this->table_name.project_id LIKE '%$parent_field%')";
         } else {
-            $where .= " ($this->table_name.$field  LIKE '%$q%') ";
+            $where .= "( ($this->table_name.$field  LIKE '%$q%') AND $this->table_name.project_id LIKE '%$parent_field%')";
         }
 
 		$this->join_avaiable();
@@ -66,16 +66,16 @@ class Model_jrp_project_lcp extends MY_Model {
                 $iterasi++;
             }
 
-            $where = " ($where) ";
+            $where = "( ($where) AND $this->table_name.project_id LIKE '%$parent_field%')";
         } else {
-            $where .= " ($this->table_name.$field  LIKE '%$q%') ";
+            $where .= "( ($this->table_name.$field  LIKE '%$q%') AND $this->table_name.project_id LIKE '%$parent_field%')";
         }
 
         if (is_array($select_field) AND count($select_field)) {
         	$this->db->select($select_field);
         }
 		
-		//$this->join_avaiable();
+		$this->join_avaiable();
         $this->db->where($where);
         $this->db->limit($limit, $offset);
         $this->db->order_by('jrp_project_lcp.'.$this->primary_key, "DESC");
@@ -86,7 +86,7 @@ class Model_jrp_project_lcp extends MY_Model {
 
 	public function join_avaiable() {
 
-		//$this->db->join('jrp_project_book', 'jrp_project_book.id = jrp_project_lcp.project_id', 'LEFT');
+		$this->db->join('jrp_project_book', 'jrp_project_book.id = jrp_project_lcp.project_id', 'LEFT');
 	    	
     	return $this;
 	}

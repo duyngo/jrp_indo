@@ -528,11 +528,11 @@ class Model_jrp_project_book extends MY_Model {
 
         $this->pdf = new HtmlPdf($config);
 
-        $this->db->select("c.LCP_code,c.type,c.lcp_layout,c.location,c.area,c.control_area_name,c.note,c.lcp_finish");
+        $this->db->select("c.LCP_code,c.type,c.lcp_layout,c.location,c.area,c.control_area_name,c.note,c.lcp_finish,c.project_id");
         $this->db->from($table.' c');
-        //$this->db->join('jrp_project_book pb','c.project_id = pb.id');
+        $this->db->join('jrp_project_book pb','c.project_id = pb.id');
 
-        //$this->db->where('pb.project_id = '.$project->id);
+        $this->db->where('c.project_id = '.$project->id);
         //$this->db->order_by('bl.document_id','ASC');
         $result = $this->db->get();
 

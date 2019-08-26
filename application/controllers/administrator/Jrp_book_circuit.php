@@ -168,7 +168,7 @@ class Jrp_book_circuit extends Admin
 		$this->form_validation->set_rules('project_Id', 'Project Id', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('layout_id', 'Layout Id', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('circuit', 'Circuit', 'trim|required|max_length[128]');
-		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required|max_length[11]');
+
 		
 		if ($this->form_validation->run()) {
 		

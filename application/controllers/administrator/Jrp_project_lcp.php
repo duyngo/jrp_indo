@@ -24,7 +24,7 @@ class Jrp_project_lcp extends Admin
 	*
 	* @var $offset String
 	*/
-	public function index($projectId = 0, $offset = 0)
+	public function index($projectId, $offset = 0)
 	{
 		$this->is_allowed('jrp_project_lcp_list');
 
@@ -101,6 +101,7 @@ class Jrp_project_lcp extends Admin
 				'control_area_name' => $this->input->post('control_area_name'),
 				'note' => $this->input->post('note'),
 				'lcp_finish' => $this->input->post('lcp_finish'),
+                'project_id' => $this->input->post('project_id')
 			];
 
 			
@@ -173,13 +174,13 @@ class Jrp_project_lcp extends Admin
 		}
 		
 		$this->form_validation->set_rules('LCP_code', 'LCP Code', 'trim|required|max_length[64]');
-		$this->form_validation->set_rules('type', 'Type', 'trim|required|max_length[11]');
-		$this->form_validation->set_rules('lcp_layout', 'Lcp Layout', 'trim|required|max_length[128]');
-		$this->form_validation->set_rules('location', 'Location', 'trim|required|max_length[128]');
-		$this->form_validation->set_rules('area', 'Area', 'trim|required|max_length[11]');
-		$this->form_validation->set_rules('control_area_name', 'Control Area Name', 'trim|required|max_length[128]');
-		$this->form_validation->set_rules('note', 'Note', 'trim|required|max_length[256]');
-		$this->form_validation->set_rules('lcp_finish', 'lcp finish', 'trim|required|max_length[64]');
+//		$this->form_validation->set_rules('type', 'Type', 'trim|required|max_length[11]');
+//		$this->form_validation->set_rules('lcp_layout', 'Lcp Layout', 'trim|required|max_length[128]');
+//		$this->form_validation->set_rules('location', 'Location', 'trim|required|max_length[128]');
+//		$this->form_validation->set_rules('area', 'Area', 'trim|required|max_length[11]');
+//		$this->form_validation->set_rules('control_area_name', 'Control Area Name', 'trim|required|max_length[128]');
+//		$this->form_validation->set_rules('note', 'Note', 'trim|required|max_length[256]');
+//		$this->form_validation->set_rules('lcp_finish', 'lcp finish', 'trim|required|max_length[64]');
 		
 		if ($this->form_validation->run()) {
 		
@@ -191,6 +192,7 @@ class Jrp_project_lcp extends Admin
 				'area' => $this->input->post('area'),
 				'control_area_name' => $this->input->post('control_area_name'),
 				'note' => $this->input->post('note'),
+                'lcp_finish' => $this->input->post('lcp_finish'),
 				'lcp_finish' => $this->input->post('lcp_finish'),
 			];
 
@@ -202,7 +204,7 @@ class Jrp_project_lcp extends Admin
 					$this->data['success'] = true;
 					$this->data['id'] 	   = $id;
 					$this->data['message'] = cclang('success_update_data_stay', [
-						anchor('administrator/jrp_project_lcp', ' Go back to list')
+						anchor('administrator/jrp_project_lcp/index/'.$this->input->post('project_id'), ' Go back to list')
 					]);
 				} else {
 					set_message(

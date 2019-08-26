@@ -63,6 +63,14 @@ jQuery(document).ready(domo);
                            <?= _ent($jrp_book_dimming_setting->id); ?>
                         </div>
                     </div>
+
+                      <div class="form-group ">
+                          <label for="content" class="col-sm-2 control-label">Layout Id </label>
+
+                          <div class="col-sm-8">
+                              <?= _ent($jrp_book_dimming_setting->document_id); ?>
+                          </div>
+                      </div>
                                          
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Circuit Id </label>
@@ -135,7 +143,7 @@ jQuery(document).ready(domo);
                         <?php is_allowed('jrp_book_dimming_setting_update', function($jrp_book_dimming_setting) use ($jrp_book_dimming_setting){?>
                         <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit jrp_book_dimming_setting (Ctrl+e)" href="<?= site_url('administrator/jrp_book_dimming_setting/edit/'.$jrp_book_dimming_setting->id); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Jrp Book Dimming Setting']); ?> </a>
                         <?php }) ?>
-                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/jrp_book_dimming_setting/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Book Dimming Setting']); ?></a>
+                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/jrp_book_dimming_setting/index/'.$jrp_book_dimming_setting->project_id); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Book Dimming Setting']); ?></a>
                      </div>
                     
                   </div>

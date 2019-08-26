@@ -119,6 +119,13 @@ jQuery(document).ready(domo);
                            <?= _ent($jrp_project_lcp->note); ?>
                         </div>
                     </div>
+                      <div class="form-group ">
+                          <label for="content" class="col-sm-2 control-label">LCP Finish </label>
+
+                          <div class="col-sm-8">
+                              <?= _ent($jrp_project_lcp->lcp_finish); ?>
+                          </div>
+                      </div>
                                          
                     <div class="form-group ">
                         <label for="content" class="col-sm-2 control-label">Project Id </label>
@@ -135,7 +142,7 @@ jQuery(document).ready(domo);
                         <?php is_allowed('jrp_project_lcp_update', function($jrp_project_lcp) use ($jrp_project_lcp){?>
                         <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit jrp_project_lcp (Ctrl+e)" href="<?= site_url('administrator/jrp_project_lcp/edit/'.$jrp_project_lcp->id); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Jrp Project Lcp']); ?> </a>
                         <?php }) ?>
-                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/jrp_project_lcp/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Project Lcp']); ?></a>
+                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/jrp_project_lcp/index/'.$jrp_project_lcp->project_id); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Project Lcp']); ?></a>
                      </div>
                     
                   </div>

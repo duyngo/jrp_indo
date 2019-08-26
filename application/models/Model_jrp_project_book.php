@@ -486,7 +486,11 @@ class Model_jrp_project_book extends MY_Model {
         $this->db->join('jrp_fixture f','cs.fixtures = f.id');
         $this->db->join('jrp_book_circuit c', 'cs.circuit_id = c.id');
         $this->db->join('jrp_mstr_load_type lt', 'cs.load_type = lt.id');
-        $this->db->where('cs.project_id = '.$project->id.' AND c.layout_id IN ('.implode(',',$arrId).')');
+        $this->db->where('cs.project_id = '.$project->id);
+        if(count($arrId)){
+            $this->db->where("c.layout_id IN (".implode(',',$arrId).")");
+        }
+
         $result = $this->db->get();
         
         
@@ -524,11 +528,11 @@ class Model_jrp_project_book extends MY_Model {
 
         $this->pdf = new HtmlPdf($config);
 
-        $this->db->select("c.LCP_code,c.type,c.lcp_layout,c.location,c.area,c.control_area_name,c.note");
+        $this->db->select("c.LCP_code,c.type,c.lcp_layout,c.location,c.area,c.control_area_name,c.note,c.lcp_finish");
         $this->db->from($table.' c');
-        $this->db->join('jrp_project_book pb','c.project_id = pb.id');
+        //$this->db->join('jrp_project_book pb','c.project_id = pb.id');
 
-        $this->db->where('c.project_id = '.$project->id);
+        //$this->db->where('pb.project_id = '.$project->id);
         //$this->db->order_by('bl.document_id','ASC');
         $result = $this->db->get();
 

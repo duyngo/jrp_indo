@@ -133,11 +133,11 @@ jQuery(document).ready(domo);
 		                     	</td>
 		                     	<td>
 			                     	<a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_schedule_note/');?><?= _ent($jrp_project_book->id); ?>">Circuit Schedule Notes Download</a><br>
-	                        <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_circuit_schedule/');?><?= _ent($jrp_project_book->id); ?>">Circuit & Dimmer Schedule Download</a><br>
+	                        <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_circuit_schedule/');?><?= _ent($jrp_project_book->id); ?>">Circuit & Dimming Schedule Download</a><br>
 		                     	</td>
 		                     	<td>
 	                        <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_lcp/');?><?= _ent($jrp_project_book->id); ?>">LCP Download</a><br>
-	                        <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_dimming/');?><?= _ent($jrp_project_book->id); ?>">Dimming Download</a><br>
+	                        <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_dimming/');?><?= _ent($jrp_project_book->id); ?>">Dimming Setting Download</a><br>
 		                     	</td>
 		                     </tr>
                          <tr>

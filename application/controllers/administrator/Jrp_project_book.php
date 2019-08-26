@@ -398,7 +398,7 @@ class Jrp_project_book extends Admin
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_project_book->pdf_circuit_schedule('jrp_book_circuit_schedule','Circuit & Dimmer Schedule',$project);
+		$this->model_jrp_project_book->pdf_circuit_schedule('jrp_book_circuit_schedule','Circuit & Dimming Schedule',$project);
 	}
 }
 

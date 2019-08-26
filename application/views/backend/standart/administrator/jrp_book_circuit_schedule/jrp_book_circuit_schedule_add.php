@@ -80,7 +80,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="feed_from" class="col-sm-2 control-label">Feed From 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="feed_from" id="feed_from" placeholder="Feed From" value="<?= set_value('feed_from'); ?>">
@@ -91,7 +91,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="dim_rack" class="col-sm-2 control-label">Dim Rack 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="dim_rack" id="dim_rack" placeholder="Dim Rack" value="<?= set_value('dim_rack'); ?>">
@@ -102,7 +102,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="quantity" class="col-sm-2 control-label">Quantity 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Quantity" value="<?= set_value('quantity'); ?>">

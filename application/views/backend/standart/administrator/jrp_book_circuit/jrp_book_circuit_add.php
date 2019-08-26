@@ -94,7 +94,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="quantity" class="col-sm-2 control-label">Quantity 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Quantity" value="<?= set_value('quantity'); ?>">

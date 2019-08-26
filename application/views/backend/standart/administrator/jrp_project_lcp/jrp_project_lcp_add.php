@@ -75,7 +75,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="type" class="col-sm-2 control-label">Type 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="number" class="form-control" name="type" id="type" placeholder="Type" maxlength="11" value="<?= set_value('type'); ?>">
@@ -86,7 +86,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="lcp_layout" class="col-sm-2 control-label">Lcp Layout 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="lcp_layout" id="lcp_layout" placeholder="Lcp Layout" maxlength="128" value="<?= set_value('lcp_layout'); ?>">
@@ -97,7 +97,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="location" class="col-sm-2 control-label">Location 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="location" id="location" placeholder="Location" maxlength="128" value="<?= set_value('location'); ?>">
@@ -108,7 +108,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="area" class="col-sm-2 control-label">Area 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="number" class="form-control" name="area" id="area" placeholder="Area" maxlength="11" value="<?= set_value('area'); ?>">
@@ -119,7 +119,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="control_area_name" class="col-sm-2 control-label">Control Area Name 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="control_area_name" id="control_area_name" placeholder="Control Area Name" maxlength="128" value="<?= set_value('control_area_name'); ?>">
@@ -130,7 +130,7 @@
                                                  
                                                 <div class="form-group ">
                             <label for="note" class="col-sm-2 control-label">Note 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="note" id="note" placeholder="Note" maxlength="256" value="<?= set_value('note'); ?>">
@@ -141,7 +141,7 @@
 
                         <div class="form-group ">
                             <label for="LCP_code" class="col-sm-2 control-label">LCP Finish
-                                <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="lcp_finish" id="lcp_finish" placeholder="LCP Code" maxlength="64" value="<?= set_value('lcp_finish'); ?>">

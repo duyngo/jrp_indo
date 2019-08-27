@@ -83,9 +83,9 @@ class Jrp_book_circuit_schedule extends Admin
 		}
 
 		$this->form_validation->set_rules('circuit_id', 'Circuit Id', 'trim|required|max_length[11]');
-//		$this->form_validation->set_rules('feed_from', 'Feed From', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('dim_rack', 'Dim Rack', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required|max_length[11]');
+		$this->form_validation->set_rules('feed_from', 'Feed From', 'trim|max_length[128]');
+		$this->form_validation->set_rules('dim_rack', 'Dim Rack', 'trim|max_length[128]');
+		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|max_length[11]');
 		$this->form_validation->set_rules('fixtures', 'Fixtures', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('AD', 'AD', 'trim|required|max_length[128]');
 		$this->form_validation->set_rules('load_type', 'Load Type', 'trim|required|max_length[20]');
@@ -175,9 +175,9 @@ class Jrp_book_circuit_schedule extends Admin
 		}
 		
 		$this->form_validation->set_rules('circuit_id', 'Circuit Id', 'trim|required|max_length[11]');
-//		$this->form_validation->set_rules('feed_from', 'Feed From', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('dim_rack', 'Dim Rack', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required|max_length[11]');
+		$this->form_validation->set_rules('feed_from', 'Feed From', 'trim|max_length[128]');
+		$this->form_validation->set_rules('dim_rack', 'Dim Rack', 'trim|max_length[128]');
+		$this->form_validation->set_rules('quantity', 'Quantity', 'trim|max_length[11]');
 		$this->form_validation->set_rules('fixtures', 'Fixtures', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('AD', 'AD', 'trim|required|max_length[128]');
 		$this->form_validation->set_rules('load_type', 'Load Type', 'trim|required|max_length[20]');

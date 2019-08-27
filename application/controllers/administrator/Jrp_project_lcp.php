@@ -81,13 +81,13 @@ class Jrp_project_lcp extends Admin
 		}
 
 		$this->form_validation->set_rules('LCP_code', 'LCP Code', 'trim|required|max_length[64]');
-//		$this->form_validation->set_rules('type', 'Type', 'trim|required|max_length[11]');
-//		$this->form_validation->set_rules('lcp_layout', 'Lcp Layout', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('location', 'Location', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('area', 'Area', 'trim|required|max_length[11]');
-//		$this->form_validation->set_rules('control_area_name', 'Control Area Name', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('note', 'Note', 'trim|required|max_length[256]');
-//        $this->form_validation->set_rules('lcp_finish', 'lcp finish', 'trim|required|max_length[64]');
+		$this->form_validation->set_rules('type', 'Type', 'trim|max_length[11]');
+		$this->form_validation->set_rules('lcp_layout', 'Lcp Layout', 'trim|max_length[128]');
+		$this->form_validation->set_rules('location', 'Location', 'trim|max_length[128]');
+		$this->form_validation->set_rules('area', 'Area', 'trim|max_length[11]');
+		$this->form_validation->set_rules('control_area_name', 'Control Area Name', 'trim|max_length[128]');
+		$this->form_validation->set_rules('note', 'Note', 'trim|max_length[256]');
+        $this->form_validation->set_rules('lcp_finish', 'lcp finish', 'trim|max_length[64]');
 		
 
 		if ($this->form_validation->run()) {
@@ -174,13 +174,13 @@ class Jrp_project_lcp extends Admin
 		}
 		
 		$this->form_validation->set_rules('LCP_code', 'LCP Code', 'trim|required|max_length[64]');
-//		$this->form_validation->set_rules('type', 'Type', 'trim|required|max_length[11]');
-//		$this->form_validation->set_rules('lcp_layout', 'Lcp Layout', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('location', 'Location', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('area', 'Area', 'trim|required|max_length[11]');
-//		$this->form_validation->set_rules('control_area_name', 'Control Area Name', 'trim|required|max_length[128]');
-//		$this->form_validation->set_rules('note', 'Note', 'trim|required|max_length[256]');
-//		$this->form_validation->set_rules('lcp_finish', 'lcp finish', 'trim|required|max_length[64]');
+        $this->form_validation->set_rules('type', 'Type', 'trim|max_length[11]');
+        $this->form_validation->set_rules('lcp_layout', 'Lcp Layout', 'trim|max_length[128]');
+        $this->form_validation->set_rules('location', 'Location', 'trim|max_length[128]');
+        $this->form_validation->set_rules('area', 'Area', 'trim|max_length[11]');
+        $this->form_validation->set_rules('control_area_name', 'Control Area Name', 'trim|max_length[128]');
+        $this->form_validation->set_rules('note', 'Note', 'trim|max_length[256]');
+        $this->form_validation->set_rules('lcp_finish', 'lcp finish', 'trim|max_length[64]');
 		
 		if ($this->form_validation->run()) {
 		

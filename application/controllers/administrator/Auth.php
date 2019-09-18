@@ -34,7 +34,7 @@ class Auth extends Admin
 
 		if ($this->form_validation->run()) {
 			if ($this->aauth->login($this->input->post('username'), $this->input->post('password'), $this->input->post('remember'))) {
-				redirect('/','refresh');
+				redirect('/administrator/jrp_project_book','refresh');
 			} else {
 				$data['error'] = $this->aauth->print_errors(TRUE);
 			}
@@ -112,7 +112,7 @@ class Auth extends Admin
 	public function logout()
 	{
 		$this->aauth->logout();
-		redirect('/');
+		redirect('/administrator/login');
 	}
 }
 

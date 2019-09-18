@@ -202,7 +202,7 @@ class MY_Model extends CI_Model {
         $this->load->library('HtmlPdf');
       
         $config = array(
-            'orientation' => 'p',
+            'orientation' => 'l',
             'format' => 'a4',
             'marges' => array(5, 5, 5, 5)
         );

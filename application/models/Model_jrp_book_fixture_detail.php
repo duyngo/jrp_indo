@@ -89,7 +89,7 @@ class Model_jrp_book_fixture_detail extends MY_Model {
         $this->load->library('HtmlPdf');
       
         $config = array(
-            'orientation' => 'p',
+            'orientation' => 'l',
             'format' => 'a4',
             'marges' => array(5, 5, 5, 5)
         );

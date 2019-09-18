@@ -95,7 +95,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->load->library('HtmlPdf');
       
         $config = array(
-            'orientation' => 'p',
+            'orientation' => 'l',
             'format' => 'a4',
             'marges' => array(5, 5, 5, 5)
         );
@@ -129,7 +129,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->load->library('HtmlPdf');
       
         $config = array(
-            'orientation' => 'p',
+            'orientation' => 'l',
             'format' => 'a4',
             'marges' => array(15, 15, 15, 15)
         );
@@ -406,7 +406,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->load->library('HtmlPdf');
       
         $config = array(
-            'orientation' => 'p',
+            'orientation' => 'l',
             'format' => 'a4',
             'marges' => array(15, 15, 15, 15)
         );
@@ -428,7 +428,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->load->library('HtmlPdf');
 
         $config = array(
-            'orientation' => 'p',
+            'orientation' => 'l',
             'format' => 'a4',
             'marges' => array(15, 15, 15, 15)
         );

@@ -58,13 +58,16 @@ jQuery(document).ready(domo);
                <div class="box box-widget widget-user-2">
                   <!-- Add the bg color to the header using any of the bg-* classes -->
                   <div class="widget-user-header ">
-                    
+                      <div class="row pull-right">
+                          <a class="btn btn-flat btn-success" title="Back to Project List" href="/administrator/jrp_project_book">Back to Project List</a>
+                      </div>
                      <div class="widget-user-image">
                         <img class="img-circle" src="<?= BASE_ASSET; ?>/img/view.png" alt="User Avatar">
                      </div>
                      <!-- /.widget-user-image -->
                      <h3 class="widget-user-username"><?= _ent($jrp_project_book->name); ?></h3>
                      <h5 class="widget-user-desc">Detail Project Book</h5>
+
                      <hr>
                   </div>
 

@@ -49,7 +49,7 @@
                                 <img class="img-circle" src="<?= BASE_ASSET; ?>/img/add2.png" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h3 class="widget-user-username"><?= _ent($project_book->name) ?></h3>
+                            <h3 class="widget-user-username"><a href="/administrator/jrp_book_circuit_schedule/index/<?=$project_book->id?>"><?= _ent($project_book->name) ?></a></h3>
                             <h5 class="widget-user-desc">Edit Circuit Schedule</h5>
                             <hr>
                         </div>

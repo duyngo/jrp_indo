@@ -49,7 +49,7 @@
                                 <img class="img-circle" src="<?= BASE_ASSET; ?>/img/add2.png" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h3 class="widget-user-username"><?= $project_book->name ?></h3>
+                            <h3 class="widget-user-username"><a href="/administrator/jrp_book_circuit/index/<?=$project_book->id?>"><?= $project_book->name ?></a></h3>
                             <h5 class="widget-user-desc">Edit Book Circuit</h5>
                             <hr>
                         </div>
@@ -59,7 +59,6 @@
                             'id'      => 'form_jrp_book_circuit', 
                             'method'  => 'POST'
                             ]); ?>
--->
 
                                                  
                         <div class="form-group ">

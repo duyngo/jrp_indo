@@ -111,7 +111,7 @@ jQuery(document).ready(domo);
                         <?php is_allowed('jrp_book_circuit_update', function($jrp_book_circuit) use ($jrp_book_circuit){?>
                         <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit jrp_book_circuit (Ctrl+e)" href="<?= site_url('administrator/jrp_book_circuit/edit/'.$jrp_book_circuit->id); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Jrp Book Circuit']); ?> </a>
                         <?php }) ?>
-                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/jrp_book_circuit/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Book Circuit']); ?></a>
+                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="javascript: history.go(-1)"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Book Circuit']); ?></a>
                      </div>
                     
                   </div>

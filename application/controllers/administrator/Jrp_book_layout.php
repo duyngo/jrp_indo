@@ -26,7 +26,7 @@ class Jrp_book_layout extends Admin
 	*
 	* @var $offset String
 	*/
-	public function index($projectId,$offset = 0)
+	public function index($projectId, $offset = 0)
 	{
 		$this->is_allowed('jrp_book_layout_list');
 
@@ -170,7 +170,8 @@ class Jrp_book_layout extends Admin
 		
 		$this->form_validation->set_rules('document_id', 'Document Id', 'trim|required|max_length[128]');
 		$this->form_validation->set_rules('title', 'Title', 'trim|required|max_length[128]');
-		//$this->form_validation->set_rules('project_id', 'Project Id', 'trim|required');
+
+        $project_id = $_POST['project_id'];
 		
 		if ($this->form_validation->run()) {
 		
@@ -188,7 +189,7 @@ class Jrp_book_layout extends Admin
 					$this->data['success'] = true;
 					$this->data['id'] 	   = $id;
 					$this->data['message'] = cclang('success_update_data_stay', [
-						anchor('administrator/jrp_book_layout', ' Go back to list')
+						anchor('administrator/jrp_book_layout/index/'.$project_id, ' Go back to list')
 					]);
 				} else {
 					set_message(
@@ -196,7 +197,7 @@ class Jrp_book_layout extends Admin
 					]), 'success');
 
             		$this->data['success'] = true;
-					$this->data['redirect'] = base_url('administrator/jrp_book_layout');
+					$this->data['redirect'] = base_url('administrator/jrp_book_layout/index/'.$project_id);
 				}
 			} else {
 				if ($this->input->post('save_type') == 'stay') {
@@ -256,7 +257,7 @@ class Jrp_book_layout extends Admin
 	{
 		$this->is_allowed('jrp_book_layout_view');
 
-		$this->data['jrp_book_layout'] = $this->model_jrp_book_layout->join_avaiable()->find($id);
+		$this->data['jrp_book_layout'] = $this->model_jrp_book_layout->join_avaiable()->find($id, array('jrp_book_layout.*, jrp_project_book.name'));
 
 		$this->template->title('Book Layout Detail');
 		$this->render('backend/standart/administrator/jrp_book_layout/jrp_book_layout_view', $this->data);

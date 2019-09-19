@@ -135,7 +135,7 @@ jQuery(document).ready(domo);
                         <?php is_allowed('jrp_book_circuit_schedule_update', function($jrp_book_circuit_schedule) use ($jrp_book_circuit_schedule){?>
                         <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit jrp_book_circuit_schedule (Ctrl+e)" href="<?= site_url('administrator/jrp_book_circuit_schedule/edit/'.$jrp_book_circuit_schedule->id); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Jrp Book Circuit Schedule']); ?> </a>
                         <?php }) ?>
-                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/jrp_book_circuit_schedule/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Book Circuit Schedule']); ?></a>
+                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="javascript: history.go(-1)"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Book Circuit Schedule']); ?></a>
                      </div>
                     
                   </div>

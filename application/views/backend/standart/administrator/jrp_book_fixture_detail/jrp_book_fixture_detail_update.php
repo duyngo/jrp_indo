@@ -60,7 +60,7 @@
                             'method'  => 'POST'
                             ]); ?>
                          
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="document_id" class="col-sm-2 control-label">Document Id 
                             <i class="required">*</i>
                             </label>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="title" class="col-sm-2 control-label">Title 
                             <i class="required">*</i>
                             </label>
@@ -82,23 +82,10 @@
                                 <input type="hidden" name="project_id" id="project_id" value="<?= $jrp_book_fixture_detail->project_id  ?>" ?>
                             </div>
                         </div>
+
+                        <input type="hidden" name="project_id" value="<?= $project_book->id ?>" />
                                                  
-<!--
-                                                <div class="form-group ">
-                            <label for="project_id" class="col-sm-2 control-label">Project Id 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="project_id" id="project_id" data-placeholder="Select Project Id" >
-                                    <option value=""></option>
-                                    <?php foreach (db_get_all_data('jrp_project_book') as $row): ?>
-                                    <option <?=  $row->id ==  $jrp_book_fixture_detail->project_id ? 'selected' : ''; ?> value="<?= $row->id ?>"><?= $row->name; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
-                                <small class="info help-block">
-                                <b>Input Project Id</b> Max Length : 11.</small>
-                            </div>
--->
+<
                         </div>
 
                                                 
@@ -147,7 +134,7 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/jrp_book_fixture_detail/index/'+<?= $jrp_book_fixture_detail->project_id ?>;
+              window.location.href = BASE_URL + 'administrator/jrp_book_fixture_detail/index/'+<?= $project_book->id ?>;
             }
           });
     

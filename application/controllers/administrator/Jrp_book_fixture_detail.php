@@ -189,6 +189,8 @@ class Jrp_book_fixture_detail extends Admin
 		$this->form_validation->set_rules('document_id', 'Document Id', 'trim|required|max_length[128]');
 		$this->form_validation->set_rules('title', 'Title', 'trim|required|max_length[128]');
 		$this->form_validation->set_rules('project_id', 'Project Id', 'trim|required|max_length[11]');
+
+        $project_id = $_POST['project_id'];
 		
 		if ($this->form_validation->run()) {
 		
@@ -206,7 +208,7 @@ class Jrp_book_fixture_detail extends Admin
 					$this->data['success'] = true;
 					$this->data['id'] 	   = $id;
 					$this->data['message'] = cclang('success_update_data_stay', [
-						anchor('administrator/jrp_book_fixture_detail', ' Go back to list')
+						anchor("administrator/jrp_book_fixture_detail/index/$project_id", ' Go back to list')
 					]);
 				} else {
 					set_message(
@@ -214,7 +216,7 @@ class Jrp_book_fixture_detail extends Admin
 					]), 'success');
 
             		$this->data['success'] = true;
-					$this->data['redirect'] = base_url('administrator/jrp_book_fixture_detail');
+					$this->data['redirect'] = base_url("administrator/jrp_book_fixture_detail/index/$project_id");
 				}
 			} else {
 				if ($this->input->post('save_type') == 'stay') {
@@ -274,7 +276,7 @@ class Jrp_book_fixture_detail extends Admin
 	{
 		$this->is_allowed('jrp_book_fixture_detail_view');
 
-		$this->data['jrp_book_fixture_detail'] = $this->model_jrp_book_fixture_detail->join_avaiable()->find($id);
+		$this->data['jrp_book_fixture_detail'] = $this->model_jrp_book_fixture_detail->join_avaiable()->find($id, array("jrp_book_fixture_detail.*, jrp_project_book.name"));
 
 		$this->template->title('Fixture Detail Detail');
 		$this->render('backend/standart/administrator/jrp_book_fixture_detail/jrp_book_fixture_detail_view', $this->data);

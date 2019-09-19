@@ -24,6 +24,7 @@
     jQuery(document).ready(domo);
 </script>
 <!-- Content Header (Page header) -->
+<?php $project_book = db_get_single_data('jrp_project_book','id='.$jrp_project_lcp->project_id ); ?>
 <section class="content-header">
     <h1>
         Lighting Control Panel        <small>Edit Lighting Control Panel</small>
@@ -48,7 +49,7 @@
                                 <img class="img-circle" src="<?= BASE_ASSET; ?>/img/add2.png" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h3 class="widget-user-username">Lighting Control Panel</h3>
+                            <h3 class="widget-user-username"><?= _ent($project_book->name) ?></h3>
                             <h5 class="widget-user-desc">Edit Lighting Control Panel</h5>
                             <hr>
                         </div>
@@ -59,19 +60,19 @@
                             'method'  => 'POST'
                             ]); ?>
                          
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="LCP_code" class="col-sm-2 control-label">LCP Code 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="LCP_code" id="LCP_code" placeholder="LCP Code" value="<?= set_value('LCP_code', $jrp_project_lcp->LCP_code); ?>">
-                                <input type="hidden" name="project_id" id="project_id" value="<?= $jrp_project_lcp->project_id ?>"/>
+
                                 <small class="info help-block">
                                 <b>Input LCP Code</b> Max Length : 64.</small>
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="type" class="col-sm-2 control-label">Type 
 
                             </label>
@@ -82,7 +83,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="lcp_layout" class="col-sm-2 control-label">Lcp Layout 
 
                             </label>
@@ -93,7 +94,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="location" class="col-sm-2 control-label">Location 
 
                             </label>
@@ -104,7 +105,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="area" class="col-sm-2 control-label">Area 
 
                             </label>
@@ -115,7 +116,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="control_area_name" class="col-sm-2 control-label">Control Area Name 
 
                             </label>
@@ -126,7 +127,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="note" class="col-sm-2 control-label">Note 
 
                             </label>
@@ -148,7 +149,7 @@
                             </div>
                         </div>
 
-
+                        <input type="hidden" name="project_id" value="<?= $project_book->id ?>" />
                                                 
                         <div class="message"></div>
                         <div class="row-fluid col-md-7">
@@ -195,7 +196,7 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/jrp_project_lcp';
+              window.location.href = BASE_URL + 'administrator/jrp_project_lcp/index/<?= $project_book->id ?>';
             }
           });
     

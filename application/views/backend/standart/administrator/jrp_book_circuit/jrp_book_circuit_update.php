@@ -59,27 +59,10 @@
                             'id'      => 'form_jrp_book_circuit', 
                             'method'  => 'POST'
                             ]); ?>
-                         
-<!--
-                                                <div class="form-group ">
-                            <label for="project_Id" class="col-sm-2 control-label">Project Id 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="project_Id" id="project_Id" data-placeholder="Select Project Id" >
-                                    <option value=""></option>
-                                    <?php foreach (db_get_all_data('jrp_project_book') as $row): ?>
-                                    <option <?=  $row->id ==  $jrp_book_circuit->project_Id ? 'selected' : ''; ?> value="<?= $row->id ?>"><?= $row->name; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
-                                <small class="info help-block">
-                                <b>Input Project Id</b> Max Length : 11.</small>
-                            </div>
-                        </div>
 -->
 
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="layout_id" class="col-sm-2 control-label">Layout Id 
                             <i class="required">*</i>
                             </label>
@@ -97,7 +80,7 @@
                         </div>
 
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="circuit" class="col-sm-2 control-label">Circuit 
                             <i class="required">*</i>
                             </label>
@@ -108,7 +91,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="quantity" class="col-sm-2 control-label">Quantity 
 
                             </label>
@@ -119,7 +102,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="circuit_desc" class="col-sm-2 control-label">Circuit Desc 
                             </label>
                             <div class="col-sm-8">
@@ -128,6 +111,8 @@
                                 </small>
                             </div>
                         </div>
+
+                        <input type="hidden" name="project_id" value="<?= $project_book->id ?>" />
                                                 
                         <div class="message"></div>
                         <div class="row-fluid col-md-7">
@@ -174,7 +159,7 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/jrp_book_circuit/index/'+<?= $jrp_book_circuit->project_Id ?>;
+              window.location.href = BASE_URL + 'administrator/jrp_book_circuit/index/'+<?= $project_book->id ?>;
             }
           });
     

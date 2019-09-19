@@ -24,6 +24,7 @@
     jQuery(document).ready(domo);
 </script>
 <!-- Content Header (Page header) -->
+<?php $project_book = db_get_single_data('jrp_project_book','id='.$jrp_book_circuit_schedule->project_id ); ?>
 <section class="content-header">
     <h1>
         Circuit Schedule        <small>Edit Circuit Schedule</small>
@@ -48,7 +49,7 @@
                                 <img class="img-circle" src="<?= BASE_ASSET; ?>/img/add2.png" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h3 class="widget-user-username">Circuit Schedule</h3>
+                            <h3 class="widget-user-username"><?= _ent($project_book->name) ?></h3>
                             <h5 class="widget-user-desc">Edit Circuit Schedule</h5>
                             <hr>
                         </div>
@@ -59,7 +60,7 @@
                             'method'  => 'POST'
                             ]); ?>
                          
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="circuit_id" class="col-sm-2 control-label">Circuit Id 
                             <i class="required">*</i>
                             </label>
@@ -76,7 +77,7 @@
                         </div>
 
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="feed_from" class="col-sm-2 control-label">Feed From 
 
                             </label>
@@ -87,7 +88,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="dim_rack" class="col-sm-2 control-label">Dim Rack 
 
                             </label>
@@ -98,7 +99,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="quantity" class="col-sm-2 control-label">Quantity 
 
                             </label>
@@ -109,7 +110,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="fixtures" class="col-sm-2 control-label">Fixtures 
                             <i class="required">*</i>
                             </label>
@@ -126,7 +127,7 @@
                         </div>
 
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="AD" class="col-sm-2 control-label">AD 
                             <i class="required">*</i>
                             </label>
@@ -142,7 +143,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="load_type" class="col-sm-2 control-label">Load Type 
                             <i class="required">*</i>
                             </label>
@@ -153,31 +154,13 @@
                                     <option <?=  $row->id ==  $jrp_book_circuit_schedule->load_type ? 'selected' : ''; ?> value="<?= $row->id ?>"><?= $row->name; ?></option>
                                     <?php endforeach; ?>  
                                 </select>
-                                <input type="hidden" name="project_id" id="project_id" value="<?= $jrp_book_circuit_schedule->project_id ?>" />
+
                                 <small class="info help-block">
                                 <b>Input Load Type</b> Max Length : 20.</small>
                             </div>
                         </div>
 
-                                                 
-<!--
-                                                <div class="form-group ">
-                            <label for="project_id" class="col-sm-2 control-label">Project Id 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="project_id" id="project_id" data-placeholder="Select Project Id" >
-                                    <option value=""></option>
-                                    <?php foreach (db_get_all_data('jrp_project_book') as $row): ?>
-                                    <option <?=  $row->id ==  $jrp_book_circuit_schedule->project_id ? 'selected' : ''; ?> value="<?= $row->id ?>"><?= $row->name; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
-                                <small class="info help-block">
-                                </small>
-                            </div>
-                        </div>
--->
-
+                        <input type="hidden" name="project_id" value="<?= $project_book->id ?>" />
                                                 
                         <div class="message"></div>
                         <div class="row-fluid col-md-7">
@@ -208,8 +191,7 @@
 <!-- Page script -->
 <script>
     $(document).ready(function(){
-      
-             
+
       $('#btn_cancel').click(function(){
         swal({
             title: "Are you sure?",
@@ -224,14 +206,15 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/jrp_book_circuit_schedule/index/'+<?= $jrp_book_circuit_schedule->project_id ?>;
+              window.location.href = BASE_URL + 'administrator/jrp_book_circuit_schedule/index/'+<?= $project_book->id ?>;
             }
           });
     
         return false;
-      }); /*end btn cancel*/
+      });
     
       $('.btn_save').click(function(){
+
         $('.message').fadeOut();
             
         var form_jrp_book_circuit_schedule = $('#form_jrp_book_circuit_schedule');
@@ -273,11 +256,11 @@
         });
     
         return false;
-      }); /*end btn save*/
+      });
       
        
        
            
     
-    }); /*end doc ready*/
+    });
 </script>

@@ -24,6 +24,7 @@
     jQuery(document).ready(domo);
 </script>
 <!-- Content Header (Page header) -->
+<?php $project_book = db_get_single_data('jrp_project_book','id='.$jrp_book_dimming_setting->project_id ); ?>
 <section class="content-header">
     <h1>
         Dimming Setting        <small>Edit Dimming Setting</small>
@@ -48,7 +49,7 @@
                                 <img class="img-circle" src="<?= BASE_ASSET; ?>/img/add2.png" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h3 class="widget-user-username">Dimming Setting</h3>
+                            <h3 class="widget-user-username"><?= _ent($project_book->name) ?></h3>
                             <h5 class="widget-user-desc">Edit Dimming Setting</h5>
                             <hr>
                         </div>
@@ -59,12 +60,12 @@
                             'method'  => 'POST'
                             ]); ?>
                          
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="circuit_id" class="col-sm-2 control-label">Circuit Id 
                             <i class="required">*</i>
                             </label>
                             <div class="col-sm-8">
-	                             <input type="hidden" class="form-control" name="project_id" id="project_id" placeholder="Project Id" value="<?= set_value('project_id', $jrp_book_dimming_setting->project_id); ?>">
+
                                 <select  class="form-control chosen chosen-select-deselect" name="circuit_id" id="circuit_id" data-placeholder="Select Circuit Id" >
                                     <option value=""></option>
                                     <?php foreach (db_get_all_data('jrp_book_circuit') as $row): ?>
@@ -77,9 +78,9 @@
                         </div>
 
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="scene_1" class="col-sm-2 control-label">Scene 1 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="scene_1" id="scene_1" placeholder="Scene 1" value="<?= set_value('scene_1', $jrp_book_dimming_setting->scene_1); ?>">
@@ -88,9 +89,9 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="scene_2" class="col-sm-2 control-label">Scene 2 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="scene_2" id="scene_2" placeholder="Scene 2" value="<?= set_value('scene_2', $jrp_book_dimming_setting->scene_2); ?>">
@@ -99,9 +100,9 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="scene_3" class="col-sm-2 control-label">Scene 3 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="scene_3" id="scene_3" placeholder="Scene 3" value="<?= set_value('scene_3', $jrp_book_dimming_setting->scene_3); ?>">
@@ -110,9 +111,9 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="scene_4" class="col-sm-2 control-label">Scene 4 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="scene_4" id="scene_4" placeholder="Scene 4" value="<?= set_value('scene_4', $jrp_book_dimming_setting->scene_4); ?>">
@@ -121,9 +122,9 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="scene_5" class="col-sm-2 control-label">Scene 5 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="scene_5" id="scene_5" placeholder="Scene 5" value="<?= set_value('scene_5', $jrp_book_dimming_setting->scene_5); ?>">
@@ -132,9 +133,9 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="scene_6" class="col-sm-2 control-label">Scene 6 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" name="scene_6" id="scene_6" placeholder="Scene 6" value="<?= set_value('scene_6', $jrp_book_dimming_setting->scene_6); ?>">
@@ -143,9 +144,9 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="note" class="col-sm-2 control-label">Note 
-                            <i class="required">*</i>
+
                             </label>
                             <div class="col-sm-8">
                                 <textarea id="note" name="note" rows="10" cols="80"> <?= set_value('note', $jrp_book_dimming_setting->note); ?></textarea>
@@ -153,17 +154,10 @@
                                 </small>
                             </div>
                         </div>
+
+                        <input type="hidden" name="project_id" value="<?= $project_book->id ?>" />
                                                  
-<!--
-                                                <div class="form-group ">
-                            <label for="project_id" class="col-sm-2 control-label">Project Id 
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="hidden" class="form-control" name="project_id" id="project_id" placeholder="Project Id" value="<?= set_value('project_id', $jrp_book_dimming_setting->project_id); ?>">
-                                <small class="info help-block">
-                                </small>
-                            </div>
--->
+
                         </div>
                                                 
                         <div class="message"></div>
@@ -214,7 +208,7 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/jrp_book_dimming_setting';
+              window.location.href = BASE_URL + 'administrator/jrp_book_dimming_setting/index/<?= $project_book->id ?>';
             }
           });
     

@@ -95,7 +95,7 @@ jQuery(document).ready(domo);
                         <?php is_allowed('jrp_book_fixture_detail_update', function($jrp_book_fixture_detail) use ($jrp_book_fixture_detail){?>
                         <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit jrp_book_fixture_detail (Ctrl+e)" href="<?= site_url('administrator/jrp_book_fixture_detail/edit/'.$jrp_book_fixture_detail->id); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Jrp Book Fixture Detail']); ?> </a>
                         <?php }) ?>
-                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/jrp_book_fixture_detail/'); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Book Fixture Detail']); ?></a>
+                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="javascript: history.go(-1)"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Book Fixture Detail']); ?></a>
                      </div>
                     
                   </div>

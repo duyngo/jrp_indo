@@ -142,7 +142,7 @@ jQuery(document).ready(domo);
                         <?php is_allowed('jrp_project_lcp_update', function($jrp_project_lcp) use ($jrp_project_lcp){?>
                         <a class="btn btn-flat btn-info btn_edit btn_action" id="btn_edit" data-stype='back' title="edit jrp_project_lcp (Ctrl+e)" href="<?= site_url('administrator/jrp_project_lcp/edit/'.$jrp_project_lcp->id); ?>"><i class="fa fa-edit" ></i> <?= cclang('update', ['Jrp Project Lcp']); ?> </a>
                         <?php }) ?>
-                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="<?= site_url('administrator/jrp_project_lcp/index/'.$jrp_project_lcp->project_id); ?>"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Project Lcp']); ?></a>
+                        <a class="btn btn-flat btn-default btn_action" id="btn_back" title="back (Ctrl+x)" href="javascript: history.go(-1)"><i class="fa fa-undo" ></i> <?= cclang('go_list_button', ['Jrp Project Lcp']); ?></a>
                      </div>
                     
                   </div>

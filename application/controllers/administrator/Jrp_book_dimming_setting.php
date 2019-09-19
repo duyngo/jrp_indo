@@ -112,13 +112,13 @@ class Jrp_book_dimming_setting extends Admin
 
         $this->form_validation->set_rules('layout_id', 'layout Id', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('circuit_id', 'Circuit Id', 'trim|required|max_length[11]');
-//		$this->form_validation->set_rules('scene_1', 'Scene 1', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_2', 'Scene 2', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_3', 'Scene 3', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_4', 'Scene 4', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_5', 'Scene 5', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_6', 'Scene 6', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('note', 'Note', 'trim');
+		$this->form_validation->set_rules('scene_1', 'Scene 1', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_2', 'Scene 2', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_3', 'Scene 3', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_4', 'Scene 4', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_5', 'Scene 5', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_6', 'Scene 6', 'trim|max_length[64]');
+		$this->form_validation->set_rules('note', 'Note', 'trim');
 		
 
 		if ($this->form_validation->run()) {
@@ -205,20 +205,21 @@ class Jrp_book_dimming_setting extends Admin
 			exit;
 		}
 
-        $this->form_validation->set_rules('layout_id', 'layout Id', 'trim|required|max_length[11]');
+//        $this->form_validation->set_rules('layout_id', 'layout Id', 'trim|required|max_length[11]');
 		$this->form_validation->set_rules('circuit_id', 'Circuit Id', 'trim|required|max_length[11]');
-//		$this->form_validation->set_rules('scene_1', 'Scene 1', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_2', 'Scene 2', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_3', 'Scene 3', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_4', 'Scene 4', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_5', 'Scene 5', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('scene_6', 'Scene 6', 'trim|max_length[64]');
-//		$this->form_validation->set_rules('note', 'Note', 'trim');
+		$this->form_validation->set_rules('scene_1', 'Scene 1', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_2', 'Scene 2', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_3', 'Scene 3', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_4', 'Scene 4', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_5', 'Scene 5', 'trim|max_length[64]');
+		$this->form_validation->set_rules('scene_6', 'Scene 6', 'trim|max_length[64]');
+		$this->form_validation->set_rules('note', 'Note', 'trim');
+
+        $project_id = $_POST['project_id'];
 		
 		if ($this->form_validation->run()) {
 		
 			$save_data = [
-                'layout_id' => $this->input->post('layout_id'),
 				'circuit_id' => $this->input->post('circuit_id'),
 				'scene_1' => $this->input->post('scene_1'),
 				'scene_2' => $this->input->post('scene_2'),
@@ -226,8 +227,7 @@ class Jrp_book_dimming_setting extends Admin
 				'scene_4' => $this->input->post('scene_4'),
 				'scene_5' => $this->input->post('scene_5'),
 				'scene_6' => $this->input->post('scene_6'),
-				'note' => $this->input->post('note'),
-				'project_id' => $this->input->post('project_id'),
+				'note' => $this->input->post('note')
 			];
 
 			
@@ -238,7 +238,7 @@ class Jrp_book_dimming_setting extends Admin
 					$this->data['success'] = true;
 					$this->data['id'] 	   = $id;
 					$this->data['message'] = cclang('success_update_data_stay', [
-						anchor('administrator/jrp_book_dimming_setting/index/'.$this->input->post('project_id'), ' Go back to list')
+						anchor('administrator/jrp_book_dimming_setting/index/'.$project_id, ' Go back to list')
 					]);
 				} else {
 					set_message(
@@ -246,7 +246,7 @@ class Jrp_book_dimming_setting extends Admin
 					]), 'success');
 
             		$this->data['success'] = true;
-					$this->data['redirect'] = base_url('administrator/jrp_book_dimming_setting/index/'.$this->input->post('project_id'));
+					$this->data['redirect'] = base_url('administrator/jrp_book_dimming_setting/index/'.$project_id);
 				}
 			} else {
 				if ($this->input->post('save_type') == 'stay') {
@@ -255,7 +255,7 @@ class Jrp_book_dimming_setting extends Admin
 				} else {
             		$this->data['success'] = false;
             		$this->data['message'] = cclang('data_not_change');
-					$this->data['redirect'] = base_url('administrator/jrp_book_dimming_setting/index/'.$this->input->post('project_id'));
+					$this->data['redirect'] = base_url('administrator/jrp_book_dimming_setting');
 				}
 			}
 		} else {
@@ -306,7 +306,8 @@ class Jrp_book_dimming_setting extends Admin
 	{
 		$this->is_allowed('jrp_book_dimming_setting_view');
 
-		$this->data['jrp_book_dimming_setting'] = $this->model_jrp_book_dimming_setting->join_avaiable()->find($id);
+		$select_fields = array("jrp_book_dimming_setting.*","jrp_book_circuit.circuit","jrp_book_layout.document_id");
+		$this->data['jrp_book_dimming_setting'] = $this->model_jrp_book_dimming_setting->join_avaiable()->find($id, $select_fields);
 
 		$this->template->title('Dimming Setting Detail');
 		$this->render('backend/standart/administrator/jrp_book_dimming_setting/jrp_book_dimming_setting_view', $this->data);

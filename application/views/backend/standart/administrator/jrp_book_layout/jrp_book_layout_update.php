@@ -61,7 +61,7 @@
                             'method'  => 'POST'
                             ]); ?>
                          
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="document_id" class="col-sm-2 control-label">Document Id 
                             <i class="required">*</i>
                             </label>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                                                  
-                                                <div class="form-group ">
+                        <div class="form-group ">
                             <label for="title" class="col-sm-2 control-label">Title 
                             <i class="required">*</i>
                             </label>
@@ -82,24 +82,10 @@
                                 <b>Input Title</b> Max Length : 128.</small>
                             </div>
                         </div>
-                                                 
-<!--
-                                                <div class="form-group ">
-                            <label for="project_id" class="col-sm-2 control-label">Project Id 
-                            <i class="required">*</i>
-                            </label>
-                            <div class="col-sm-8">
-                                <select  class="form-control chosen chosen-select-deselect" name="project_id" id="project_id" data-placeholder="Select Project Id" >
-                                    <option value=""></option>
-                                    <?php foreach (db_get_all_data('jrp_project_book') as $row): ?>
-                                    <option <?=  $row->id ==  $jrp_book_layout->project_id ? 'selected' : ''; ?> value="<?= $row->id ?>"><?= $row->name; ?></option>
-                                    <?php endforeach; ?>  
-                                </select>
-                                <small class="info help-block">
-                                </small>
-                            </div>
--->
-                        </div>
+
+                        <input type="hidden" name="project_id" value="<?= $project_book->id ?>" />
+
+                    </div>
 
                                                 
                         <div class="message"></div>
@@ -131,7 +117,8 @@
 <!-- Page script -->
 <script>
     $(document).ready(function(){
-      
+
+        var project_id = <?= $project_book->id ?>;
              
       $('#btn_cancel').click(function(){
         swal({
@@ -147,7 +134,7 @@
           },
           function(isConfirm){
             if (isConfirm) {
-              window.location.href = BASE_URL + 'administrator/jrp_book_layout/index/'+<?= $jrp_book_layout->project_id ?>;
+              window.location.href = BASE_URL + 'administrator/jrp_book_layout/index/'+project_id;
             }
           });
     

@@ -171,6 +171,8 @@ class Jrp_book_circuit extends Admin
 		$this->form_validation->set_rules('circuit', 'Circuit', 'trim|required|max_length[128]');
         $this->form_validation->set_rules('quantity', 'Quantity', 'trim|max_length[11]');
 
+        $project_id = $_POST['project_id'];
+
 		
 		if ($this->form_validation->run()) {
 		
@@ -190,7 +192,7 @@ class Jrp_book_circuit extends Admin
 					$this->data['success'] = true;
 					$this->data['id'] 	   = $id;
 					$this->data['message'] = cclang('success_update_data_stay', [
-						anchor('administrator/jrp_book_circuit', ' Go back to list')
+						anchor("administrator/jrp_book_circuit/index/$project_id", ' Go back to list')
 					]);
 				} else {
 					set_message(
@@ -198,7 +200,7 @@ class Jrp_book_circuit extends Admin
 					]), 'success');
 
             		$this->data['success'] = true;
-					$this->data['redirect'] = base_url('administrator/jrp_book_circuit/index/'.$this->input->post('project_Id'));
+					$this->data['redirect'] = base_url("administrator/jrp_book_circuit/index/$project_id");
 				}
 			} else {
 				if ($this->input->post('save_type') == 'stay') {
@@ -207,7 +209,7 @@ class Jrp_book_circuit extends Admin
 				} else {
             		$this->data['success'] = false;
             		$this->data['message'] = cclang('data_not_change');
-					$this->data['redirect'] = base_url('administrator/jrp_book_circuit/index/'.$this->input->post('project_Id'));
+					$this->data['redirect'] = base_url('administrator/jrp_book_circuit');
 				}
 			}
 		} else {
@@ -258,7 +260,7 @@ class Jrp_book_circuit extends Admin
 	{
 		$this->is_allowed('jrp_book_circuit_view');
 
-		$this->data['jrp_book_circuit'] = $this->model_jrp_book_circuit->join_avaiable()->find($id);
+		$this->data['jrp_book_circuit'] = $this->model_jrp_book_circuit->join_avaiable()->find($id, array("jrp_book_circuit.*", "jrp_book_layout.document_id", "jrp_project_book.name"));
 
 		$this->template->title('Book Circuit Detail');
 		$this->render('backend/standart/administrator/jrp_book_circuit/jrp_book_circuit_view', $this->data);

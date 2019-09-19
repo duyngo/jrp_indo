@@ -181,6 +181,8 @@ class Jrp_project_lcp extends Admin
         $this->form_validation->set_rules('control_area_name', 'Control Area Name', 'trim|max_length[128]');
         $this->form_validation->set_rules('note', 'Note', 'trim|max_length[256]');
         $this->form_validation->set_rules('lcp_finish', 'lcp finish', 'trim|max_length[64]');
+
+        $project_id = $_POST['project_id'];
 		
 		if ($this->form_validation->run()) {
 		
@@ -204,7 +206,7 @@ class Jrp_project_lcp extends Admin
 					$this->data['success'] = true;
 					$this->data['id'] 	   = $id;
 					$this->data['message'] = cclang('success_update_data_stay', [
-						anchor('administrator/jrp_project_lcp/index/'.$this->input->post('project_id'), ' Go back to list')
+						anchor('administrator/jrp_project_lcp/index/'.$project_id, ' Go back to list')
 					]);
 				} else {
 					set_message(
@@ -212,7 +214,7 @@ class Jrp_project_lcp extends Admin
 					]), 'success');
 
             		$this->data['success'] = true;
-					$this->data['redirect'] = base_url('administrator/jrp_project_lcp/index/'.$this->input->post('project_id'));
+					$this->data['redirect'] = base_url('administrator/jrp_project_lcp/index/'.$project_id);
 				}
 			} else {
 				if ($this->input->post('save_type') == 'stay') {
@@ -221,7 +223,7 @@ class Jrp_project_lcp extends Admin
 				} else {
             		$this->data['success'] = false;
             		$this->data['message'] = cclang('data_not_change');
-					$this->data['redirect'] = base_url('administrator/jrp_project_lcp/index/'.$this->input->post('project_id'));
+					$this->data['redirect'] = base_url('administrator/jrp_project_lcp');
 				}
 			}
 		} else {
@@ -272,7 +274,7 @@ class Jrp_project_lcp extends Admin
 	{
 		$this->is_allowed('jrp_project_lcp_view');
 
-		$this->data['jrp_project_lcp'] = $this->model_jrp_project_lcp->join_avaiable()->find($id);
+		$this->data['jrp_project_lcp'] = $this->model_jrp_project_lcp->join_avaiable()->find($id, array('jrp_project_lcp.*, jrp_project_book.name'));
 
 		$this->template->title('Lighting Control Panel Detail');
 		$this->render('backend/standart/administrator/jrp_project_lcp/jrp_project_lcp_view', $this->data);

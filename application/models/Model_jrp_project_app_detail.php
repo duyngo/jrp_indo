@@ -91,7 +91,7 @@ class Model_jrp_project_app_detail extends MY_Model {
     	return $this;
 	}
 	
-	public function pdf_layout($table, $title, $project)
+	public function pdf_layout($table, $title, $project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -118,6 +118,10 @@ class Model_jrp_project_app_detail extends MY_Model {
             'title' => $title,
             'project_name' => $project->name
         ], TRUE);
+
+        if($get_html){
+            return $content;
+        }
 
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');

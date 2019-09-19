@@ -20,19 +20,6 @@ function domo(){
    });
     
 }
-
-function export_pdf_cover(){
-    console.log('helloooo');
-    var drawing = $('#drawing').val();
-    var fixture = $('#fixture').val();
-    var quantity = $('#quantity').val();
-    var schedule = $('#schedule').val();
-    var lcp = $('#lcp').val();
-    var str_query = "?drawing="+drawing+"&fixture="+fixture+"&quantity="+quantity+"&schedule="+schedule+"&lcp="+lcp;
-    //console.log(encodeURI(str_query));
-    window.open("/administrator/jrp_project_book/export_pdf_cover/2"+str_query);
-}
-
 jQuery(document).ready(domo);
 </script>
 <!-- Content Header (Page header) -->
@@ -103,6 +90,9 @@ jQuery(document).ready(domo);
                    
                    
                    <h3><strong>PDF Download</strong></h3>
+                  <div class="row">
+                      <a class="btn btn-flat btn-success" style="margin-left:18px;" href="/administrator/jrp_project_book/vew_all_pdf/<?=$jrp_project_book->id?>" target="_blank">View All PDF</a>
+                  </div>
                    <div class="table-responsive"> 
 	                 <table class="table table-bordered table-striped dataTable">
 	                     <thead>
@@ -216,4 +206,46 @@ jQuery(document).ready(domo);
       </div>
    </div>
 </section>
+<?= form_open('', [
+    'name'    => 'form_csrf_ajax',
+    'class'   => 'form-horizontal',
+    'id'      => 'form_csrf_ajax',
+    'enctype' => 'multipart/form-data',
+    'method'  => 'POST'
+]); ?>
 <!-- /.content -->
+<script>
+    function export_pdf_cover(){
+        console.log('helloooo');
+        var drawing = $('#drawing').val();
+        var fixture = $('#fixture').val();
+        var quantity = $('#quantity').val();
+        var schedule = $('#schedule').val();
+        var lcp = $('#lcp').val();
+        var str_query = "?drawing="+drawing+"&fixture="+fixture+"&quantity="+quantity+"&schedule="+schedule+"&lcp="+lcp;
+        //console.log(encodeURI(str_query));
+        window.open("/administrator/jrp_project_book/export_pdf_cover/2"+str_query);
+    }
+
+    //function view_all_pdf(){
+    //
+    //    var form_csrf = $('#form_csrf_ajax');
+    //    var data_post = form_csrf.serializeArray();
+    //    data_post.push({name: 'project_id', value: <?//=$jrp_project_book->id?>//});
+    //
+    //    $.ajax({
+    //        url: BASE_URL + '/administrator/jrp_project_book/vew_all_pdf',
+    //        type: 'POST',
+    //        dataType: 'json',
+    //        data: data_post,
+    //    }).done(function(res) {
+    //        console.log(res);
+    //    }).fail(function(error) {
+    //        alert(error);
+    //    });
+    //
+    //}
+    //$(document).ready(function(){
+    //
+    //});
+</script>

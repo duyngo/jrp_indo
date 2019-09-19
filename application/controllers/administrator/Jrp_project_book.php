@@ -271,6 +271,52 @@ class Jrp_project_book extends Admin
 		$this->model_jrp_project_book->export('jrp_project_book', 'jrp_project_book');
 	}
 
+	public function vew_all_pdf($project_id){
+
+        $this->load->model('model_jrp_book_layout');
+        $this->load->model('model_jrp_project_app_detail');
+        $this->load->model('model_jrp_book_fixture_detail');
+        //$this->load->model('model_jrp_project_app_detail');
+
+        //$this->load->model('model_jrp_project_app_detail');
+
+        //$project_id = $_POST['project_id'];
+        $full_content = '';
+
+        $project = $this->model_jrp_project_book->get_single("id = ".$project_id);
+
+        $full_content .= $this->model_jrp_book_layout->pdf_layout('jrp_book_layout', 'Layout', $project, true);
+        $full_content .= $this->model_jrp_project_app_detail->pdf_layout('jrp_project_app_detail', 'Application Detail', $project, true);
+        $full_content .= $this->model_jrp_book_fixture_detail->pdf_layout('jrp_book_fixture_detail', 'Fixture Detail', $project,true);
+        $full_content .= $this->model_jrp_project_book->pdf_agent('jrp_book_circuit_schedule','Agent List',$project, true);
+        $full_content .= $this->model_jrp_project_book->pdf_fixtures_note($project, true);
+        $full_content .= $this->model_jrp_project_book->pdf_fixture_spec('jrp_book_layout','Layout',$project, 'true');
+        $full_content .= $this->model_jrp_project_book->pdf_circuit_qty('jrp_book_circuit','Circuit Quantities',$project, true);
+        $full_content .= $this->model_jrp_project_book->pdf_fixture_qty('jrp_book_circuit_schedule','Fixture Quantities',$project, true);
+        $full_content .= $this->model_jrp_project_book->pdf_component_qty('jrp_book_circuit_schedule','Component Quantities',$project, true);
+        $full_content .= $this->model_jrp_project_book->pdf_schedule_note($project, true);
+        $full_content .= $this->model_jrp_project_book->pdf_circuit_schedule('jrp_book_circuit_schedule','Circuit & Dimming Schedule',$project, true);
+        $full_content .= $this->model_jrp_project_book->pdf_lcp('jrp_project_lcp','LCP',$project, true);
+        $full_content .= $this->model_jrp_project_book->pdf_dimming('jrp_book_dimming_setting','DIMMING SETTING',$project, true);
+
+
+
+        $this->load->library('HtmlPdf');
+
+        $config = array(
+            'orientation' => 'l',
+            'format' => 'a4',
+            'marges' => array(15, 15, 15, 15)
+        );
+        $this->pdf = new HtmlPdf($config);
+
+        $this->pdf->initialize($config);
+        $this->pdf->pdf->SetDisplayMode('fullpage');
+        $this->pdf->writeHTML($full_content);
+        $this->pdf->Output('vew_all_pdf.pdf', 'H');
+
+    }
+
 	/**
 	* Export to PDF
 	*

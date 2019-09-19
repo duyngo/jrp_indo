@@ -124,7 +124,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->Output($table.'.pdf', 'H');
     }
     
-    public function pdf_fixtures_note($project)
+    public function pdf_fixtures_note($project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -141,13 +141,17 @@ class Model_jrp_project_book extends MY_Model {
             'project_name' => $project->name
         ], TRUE);
 
+        if($get_html){
+            return $content;
+        }
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
         $this->pdf->Output('fixtures_note.pdf', 'H');
     }
     
-    public function pdf_fixture_spec($table, $title, $project)
+    public function pdf_fixture_spec($table, $title, $project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -159,7 +163,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $this->pdf = new HtmlPdf($config);
         
-        $this->db->start_cache();
+        //$this->db->start_cache();
         $this->db->distinct();
         $this->db->select("fixtures, f.code, quantity, image_ref");
         $this->db->from('jrp_book_circuit_schedule cs');
@@ -170,9 +174,9 @@ class Model_jrp_project_book extends MY_Model {
         $fixtures = $this->db->get()->result();
 
 		
-        $this->db->stop_cache();
+        //$this->db->stop_cache();
         
-        $this->db->flush_cache();
+        //$this->db->flush_cache();
 
 		$arrId = array();
 		foreach($fixtures as $fixture) {
@@ -197,13 +201,17 @@ class Model_jrp_project_book extends MY_Model {
             'project_name' => $project->name
         ], TRUE);
 
+        if($get_html){
+            return $content;
+        }
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
         $this->pdf->Output($table.'.pdf', 'H');
     }
     
-    public function pdf_circuit_qty($table, $title, $project)
+    public function pdf_circuit_qty($table, $title, $project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -233,13 +241,17 @@ class Model_jrp_project_book extends MY_Model {
             'project_name' => $project->name
         ], TRUE);
 
+        if($get_html){
+            return $get_html;
+        }
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
         $this->pdf->Output($table.'.pdf', 'H');
     }
 
-    public function pdf_agent($table, $title, $project)
+    public function pdf_agent($table, $title, $project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
 
@@ -271,13 +283,17 @@ class Model_jrp_project_book extends MY_Model {
             'project_name' => $project->name
         ], TRUE);
 
+        if($get_html){
+            return $content;
+        }
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
         $this->pdf->Output($table.'.pdf', 'H');
     }
     
-    public function pdf_fixture_qty($table, $title, $project)
+    public function pdf_fixture_qty($table, $title, $project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -289,7 +305,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $this->pdf = new HtmlPdf($config);
         
-        $this->db->start_cache();
+        //$this->db->start_cache();
         $this->db->distinct();
         $this->db->select("bl.id as layout_id, bl.document_id, bl.title");
         $this->db->from('jrp_book_layout bl');
@@ -298,9 +314,9 @@ class Model_jrp_project_book extends MY_Model {
         $this->db->order_by('bl.document_id','ASC');
         $layouts = $this->db->get()->result();
         
-        $this->db->stop_cache();
+        //$this->db->stop_cache();
         
-        $this->db->flush_cache();
+        //$this->db->flush_cache();
 
 		$arrId = array();
 		foreach($layouts as $layout) {
@@ -327,13 +343,17 @@ class Model_jrp_project_book extends MY_Model {
             'project_name' => $project->name
         ], TRUE);
 
+        if($get_html){
+            return $content;
+        }
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
         $this->pdf->Output($table.'.pdf', 'H');
     }
     
-    public function pdf_component_qty($table, $title, $project)
+    public function pdf_component_qty($table, $title, $project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -345,7 +365,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $this->pdf = new HtmlPdf($config);
         
-        $this->db->start_cache();
+        //$this->db->start_cache();
         $this->db->distinct();
         $this->db->select('ma.name as Manufacturer, fi.code, co.name, co.watt, co.catalog_number, co.finishing');
         $this->db->from('jrp_component co');
@@ -357,36 +377,6 @@ class Model_jrp_project_book extends MY_Model {
         $this->db->order_by('ma.name ASC, co.name ASC');
         $result = $this->db->get();
         $fields = $result->list_fields();
-        
-/*
-        $this->db->start_cache();
-        $this->db->distinct();
-        $this->db->select("bl.id as layout_id, bl.document_id, bl.title");
-        $this->db->from('jrp_book_layout bl');
-        $this->db->join('jrp_project_book pb','bl.project_id = pb.id');
-        $this->db->where('bl.project_id = '.$project->id);
-        $layouts = $this->db->get()->result();
-        
-        $this->db->stop_cache();
-        
-        $this->db->flush_cache();
-
-		$arrId = array();
-		foreach($layouts as $layout) {
-			$arrId[] = $layout->layout_id;
-		}
-        
-        $this->db->select("c.layout_id,f.code, cs.quantity as fixture_qty, c.quantity as layout_qty");
-        $this->db->from($table.' cs');
-        $this->db->join('jrp_project_book pb','cs.project_id = pb.id');
-        $this->db->join('jrp_fixture f','cs.fixtures = f.id');
-        $this->db->join('jrp_book_circuit c', 'cs.circuit_id = c.id');
-        $this->db->where('cs.project_id = '.$project->id.' AND c.layout_id IN ('.implode(',',$arrId).')');
-        $result = $this->db->get();
-        
-        
-        $fields = $result->list_fields();
-*/
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/qty', [
             'results' => $result->result(),
@@ -395,13 +385,17 @@ class Model_jrp_project_book extends MY_Model {
             'project_name' => $project->name
         ], TRUE);
 
+        if($get_html){
+            return $content;
+        }
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
         $this->pdf->Output($table.'.pdf', 'H');
     }
     
-    public function pdf_schedule_note($project)
+    public function pdf_schedule_note($project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -417,6 +411,10 @@ class Model_jrp_project_book extends MY_Model {
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/schedule-notes', [
             'project_name' => $project->name
         ], TRUE);
+
+        if($get_html){
+            return $content;
+        }
 
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
@@ -448,7 +446,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->Output('fixtures_note.pdf', 'H');
     }
     
-    public function pdf_circuit_schedule($table, $title, $project)
+    public function pdf_circuit_schedule($table, $title, $project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -460,7 +458,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $this->pdf = new HtmlPdf($config);
         
-        $this->db->start_cache();
+        //$this->db->start_cache();
         $this->db->distinct();
         $this->db->select("bl.id as layout_id, bl.document_id, bl.title");
         $this->db->from('jrp_book_layout bl');
@@ -469,9 +467,9 @@ class Model_jrp_project_book extends MY_Model {
         $this->db->order_by('bl.document_id','asc');
         $layouts = $this->db->get()->result();
         
-        $this->db->stop_cache();
+        //$this->db->stop_cache();
         
-        $this->db->flush_cache();
+        //$this->db->flush_cache();
 
 		$arrId = array();
 		foreach($layouts as $layout) {
@@ -492,13 +490,7 @@ class Model_jrp_project_book extends MY_Model {
         }
 
         $result = $this->db->get();
-        
-        
-/*
-        print_r($layouts);
-        
-        print_r($result->result());
-*/
+
         
         $fields = $result->list_fields();
 
@@ -510,13 +502,17 @@ class Model_jrp_project_book extends MY_Model {
             'project_name' => $project->name
         ], TRUE);
 
+        if($get_html){
+            return $content;
+        }
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
         $this->pdf->Output($table.'.pdf', 'H');
     }
 
-    public function pdf_lcp($table, $title, $project)
+    public function pdf_lcp($table, $title, $project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
 
@@ -546,12 +542,16 @@ class Model_jrp_project_book extends MY_Model {
             'project_name' => $project->name
         ], TRUE);
 
+        if($get_html){
+            return $content;
+        }
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
         $this->pdf->Output($table.'.pdf', 'H');
     }
-    public function pdf_dimming($table, $title, $project)
+    public function pdf_dimming($table, $title, $project, $get_html = false)
     {
         $this->load->library('HtmlPdf');
 
@@ -581,6 +581,10 @@ class Model_jrp_project_book extends MY_Model {
             'title' => $title,
             'project_name' => $project->name
         ], TRUE);
+
+        if($get_html){
+            return $content;
+        }
 
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');

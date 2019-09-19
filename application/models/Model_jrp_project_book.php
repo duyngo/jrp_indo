@@ -182,19 +182,25 @@ class Model_jrp_project_book extends MY_Model {
 		foreach($fixtures as $fixture) {
 			$arrId[] = $fixture->fixtures;
 		}
+
+		if(count($arrId)){
+            $this->db->select("fc.*,c.name,c.watt,m.name as manufacturer_name,c.catalog_number,c.finishing,c.notes");
+            $this->db->from('jrp_fixture_component fc');
+            $this->db->join('jrp_component c','fc.component_id = c.id');
+            $this->db->join('jrp_manufacturer m','c.manufacturer = m.id');
+            $this->db->where('fixture_id IN ('.implode(',',$arrId).')');
+            $result = $this->db->get()->result();
+        }else{
+            $result = array();
+        }
         
-        $this->db->select("fc.*,c.name,c.watt,m.name as manufacturer_name,c.catalog_number,c.finishing,c.notes");
-        $this->db->from('jrp_fixture_component fc');
-        $this->db->join('jrp_component c','fc.component_id = c.id');
-        $this->db->join('jrp_manufacturer m','c.manufacturer = m.id');
-        $this->db->where('fixture_id IN ('.implode(',',$arrId).')');
-        $fc = $this->db->get()->result();
+
         //$fields = $result->list_fields();
 
 		//print_r($fc);
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/fixtures', [
 	        'fixtures' => $fixtures,
-	        'fixture_components' => $fc,
+	        'fixture_components' => $result,
             //'results' => $result->result(),
             //'fields' => $fields,
             'title' => $title,
@@ -322,23 +328,23 @@ class Model_jrp_project_book extends MY_Model {
 		foreach($layouts as $layout) {
 			$arrId[] = $layout->layout_id;
 		}
-        
-        $this->db->select("c.layout_id,f.code, cs.quantity as fixture_qty, c.quantity as layout_qty");
-        $this->db->from($table.' cs');
-        $this->db->join('jrp_project_book pb','cs.project_id = pb.id');
-        $this->db->join('jrp_fixture f','cs.fixtures = f.id');
-        $this->db->join('jrp_book_circuit c', 'cs.circuit_id = c.id');
-        $this->db->where('cs.project_id = '.$project->id.' AND c.layout_id IN ('.implode(',',$arrId).')');
-        $this->db->order_by('f.code','ASC');
-        $result = $this->db->get();
-        
-        
-        $fields = $result->list_fields();
+        if(count($arrId)){
+            $this->db->select("c.layout_id,f.code, cs.quantity as fixture_qty, c.quantity as layout_qty");
+            $this->db->from($table.' cs');
+            $this->db->join('jrp_project_book pb','cs.project_id = pb.id');
+            $this->db->join('jrp_fixture f','cs.fixtures = f.id');
+            $this->db->join('jrp_book_circuit c', 'cs.circuit_id = c.id');
+            $this->db->where('cs.project_id = '.$project->id.' AND c.layout_id IN ('.implode(',',$arrId).')');
+            $this->db->order_by('f.code','ASC');
+            $result = $this->db->get()->result();
+        }else{
+            $result = array();
+        }
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/qty-fixture', [
 	        'layouts' => $layouts,
-            'results' => $result->result(),
-            'fields' => $fields,
+            'results' => $result,
+//            'fields' => $fields,
             'title' => $title,
             'project_name' => $project->name
         ], TRUE);

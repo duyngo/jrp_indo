@@ -57,14 +57,8 @@
 			<?php endforeach; ?>
 		</tbody>
 	</table>
-	
-	<?php 
-		$path =  FCPATH.'uploads/jrp_fixture/'.$fixture->image_ref;
-		$type = pathinfo($path, PATHINFO_EXTENSION);
-		$data = file_get_contents($path);
-		$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);  ?>
 	<br>
-	<img src="<?= $base64; ?>" style="height:250px;" />
+	<img src="<?= BASE_URL . 'uploads/jrp_fixture/' . $fixture->image_ref; ?>" style="height:250px;" />
 
   <page_footer>
     <div style="text-align: center;">Page [[page_cu]]</div>

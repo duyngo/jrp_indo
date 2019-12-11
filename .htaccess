@@ -6,7 +6,7 @@
 php_value post_max_size 5M
 php_value upload_max_filesize 5M
 php_value memory_limit 512M
-php_value max_execution_time 600
+php_value max_execution_time 0
 php_value max_input_time 600
 php_value session.gc_maxlifetime 1200
 </IfModule>

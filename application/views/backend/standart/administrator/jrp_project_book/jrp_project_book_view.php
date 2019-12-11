@@ -224,7 +224,7 @@ jQuery(document).ready(domo);
         var lcp = $('#lcp').val();
         var str_query = "?drawing="+drawing+"&fixture="+fixture+"&quantity="+quantity+"&schedule="+schedule+"&lcp="+lcp;
         //console.log(encodeURI(str_query));
-        window.open("/administrator/jrp_project_book/export_pdf_cover/2"+str_query);
+        window.open("/administrator/jrp_project_book/export_pdf_cover/<?=$jrp_project_book->id?>"+str_query);
     }
 
     //function view_all_pdf(){

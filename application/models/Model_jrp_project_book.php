@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require FCPATH . 'application/libraries/wkhtmltopdf/autoload.php';
+use mikehaertl\wkhtmlto\Pdf;
+
 class Model_jrp_project_book extends MY_Model {
 
 	private $primary_key 	= 'id';
@@ -151,7 +154,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->Output('fixtures_note.pdf', 'H');
     }
     
-    public function pdf_fixture_spec($table, $title, $project, $get_html = false)
+    public function pdf_fixture_spec($table, $title, $project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -211,10 +214,46 @@ class Model_jrp_project_book extends MY_Model {
             return $content;
         }
 
+//        $pdf_path = FCPATH . '/uploads/pdf/';
+//        if (!is_dir($pdf_path)) {
+//            mkdir($pdf_path);
+//        }else{
+//            delete_files($pdf_path, true);
+//        }
+//
+//        $html_file = $pdf_path.'temp_wk.html';
+//        $pdf_file = $pdf_path.$table.'.pdf';
+//        file_put_contents($html_file,$content);
+//        $commandString = "start /B wkhtmltopdf  -O Landscape -s A4 $html_file $pdf_file";
+//        popen($commandString,"r");
+//        // sleep for 10 seconds
+//        sleep(10);
+//        //$ress = exec("wkhtmltopdf --footer-center 'Page [page]'  -O Landscape -s A4 $html_path  $save_path");
+//        // send headers to browser
+//        header('Content-Type: application/force-download');
+//        header('Content-Type: application/octet-stream', false);
+//        header('Content-Type: application/download', false);
+//        header('Content-Type: application/pdf', false);
+//        header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+//        header('Pragma: public');
+//        header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+//        header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+//        header('Content-Length: '.filesize($pdf_file));
+//        header('Content-Disposition: inline; filename="'.basename($pdf_file).'";');
+//        // send document to the browser
+//        echo file_get_contents($pdf_file);
+//        exit;
+
+
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output($table.'.pdf', 'H');
+        if($save_local){
+            $this->pdf->Output(FCPATH . '/uploads/pdf/'.$table.'.pdf', 'F');
+        }else{
+            $this->pdf->Output($table.'.pdf', 'H');
+        }
+
     }
     
     public function pdf_circuit_qty($table, $title, $project, $get_html = false)

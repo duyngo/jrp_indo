@@ -357,11 +357,11 @@ class Jrp_project_book extends Admin
 	
 	public function export_pdf_fixtures_spec($project_id)
 	{
-		$this->is_allowed('jrp_book_layout_export');
+//		$this->is_allowed('jrp_book_layout_export');
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_project_book->pdf_fixture_spec('jrp_book_layout','Layout',$project);
+		$this->model_jrp_project_book->pdf_fixture_spec('jrp_book_layout','Layout',$project, false, true);
 	}
 
 

@@ -1,5 +1,11 @@
 <style type="text/css">
-	
+
+    .new-page{
+        display:block;
+        clear:both;
+        page-break-before: always;
+    }
+
 	table tbody tr td, table thead tr th{
 		border-collapse: collapse;
 		padding: 5px;

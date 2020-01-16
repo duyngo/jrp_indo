@@ -117,7 +117,7 @@ jQuery(document).ready(domo);
 		                     	</td>
 		                     	<td>
 			                     	<a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_fixtures_note/');?><?= _ent($jrp_project_book->id); ?>">Fixture Notes Download</a><br>
-	                        <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_fixtures_spec/');?><?= _ent($jrp_project_book->id); ?>">Fixture Specs Download</a><br>
+	                        <a target="_blank" href="<?= base_url('/uploads/pdf/jrp_book_layout.pdf');?>">Fixture Specs Download</a><br>
 		                     	</td>
 		                     	<td>
 			                     	<a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_circuit_qty/');?><?= _ent($jrp_project_book->id); ?>">Circuit Quantities Download</a><br>

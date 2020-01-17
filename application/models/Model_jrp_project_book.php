@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require FCPATH . 'application/libraries/wkhtmltopdf/autoload.php';
-use mikehaertl\wkhtmlto\Pdf;
+//require FCPATH . 'application/libraries/wkhtmltopdf/autoload.php';
+//use mikehaertl\wkhtmlto\Pdf;
 
 class Model_jrp_project_book extends MY_Model {
 

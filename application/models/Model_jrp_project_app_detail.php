@@ -91,7 +91,7 @@ class Model_jrp_project_app_detail extends MY_Model {
     	return $this;
 	}
 	
-	public function pdf_layout($table, $title, $project, $get_html = false)
+	public function pdf_layout($table, $title, $project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -126,7 +126,13 @@ class Model_jrp_project_app_detail extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output($table.'.pdf', 'H');
+        if($save_local){
+            $pdf_name = "app_detail.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output($table.'.pdf', 'H');
+        }
     }
 
 }

@@ -52,6 +52,7 @@
   <script src="<?= BASE_ASSET; ?>/editor/dist/js/medium-editor.js"></script>
   <script src="<?= BASE_ASSET; ?>js/cc-extension.js"></script>
   <script src="<?= BASE_ASSET; ?>/js/cc-page-element.js"></script>
+  <script src="<?= BASE_ASSET; ?>/js/loadingoverlay.js"></script>
   <script>
     var BASE_URL = "<?= base_url(); ?>";
     var HTTP_REFERER = "<?= isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/' ; ?>";

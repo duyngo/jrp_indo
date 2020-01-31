@@ -127,7 +127,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->Output($table.'.pdf', 'H');
     }
     
-    public function pdf_fixtures_note($project, $get_html = false)
+    public function pdf_fixtures_note($project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -151,7 +151,14 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output('fixtures_note.pdf', 'H');
+        if($save_local){
+            $pdf_name = "fixture_notes.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output('fixtures_note.pdf', 'H');
+        }
+
     }
     
     public function pdf_fixture_spec($table, $title, $project, $get_html = false, $save_local = false)
@@ -249,14 +256,16 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
         if($save_local){
-            $this->pdf->Output(FCPATH . '/uploads/pdf/'.$table.'.pdf', 'F');
+            $pdf_name = "fixture_specs.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
         }else{
             $this->pdf->Output($table.'.pdf', 'H');
         }
 
     }
     
-    public function pdf_circuit_qty($table, $title, $project, $get_html = false)
+    public function pdf_circuit_qty($table, $title, $project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -293,10 +302,16 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output($table.'.pdf', 'H');
+        if($save_local){
+            $pdf_name = "circuit_quantities.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output($table.'.pdf', 'H');
+        }
     }
 
-    public function pdf_agent($table, $title, $project, $get_html = false)
+    public function pdf_agent($table, $title, $project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
 
@@ -335,10 +350,16 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output($table.'.pdf', 'H');
+        if($save_local){
+            $pdf_name = "agent_list.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output($table.'.pdf', 'H');
+        }
     }
     
-    public function pdf_fixture_qty($table, $title, $project, $get_html = false)
+    public function pdf_fixture_qty($table, $title, $project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -395,10 +416,16 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output($table.'.pdf', 'H');
+        if($save_local){
+            $pdf_name = "fixture_quantities.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output($table.'.pdf', 'H');
+        }
     }
     
-    public function pdf_component_qty($table, $title, $project, $get_html = false)
+    public function pdf_component_qty($table, $title, $project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -437,10 +464,16 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output($table.'.pdf', 'H');
+        if($save_local){
+            $pdf_name = "component_quantities.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output($table.'.pdf', 'H');
+        }
     }
     
-    public function pdf_schedule_note($project, $get_html = false)
+    public function pdf_schedule_note($project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -464,7 +497,14 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output('fixtures_note.pdf', 'H');
+        if($save_local){
+            $pdf_name = "circuit_schedule_notes.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output('fixtures_note.pdf', 'H');
+        }
+
     }
     public function pdf_cover($project)
     {
@@ -491,7 +531,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->Output('fixtures_note.pdf', 'H');
     }
     
-    public function pdf_circuit_schedule($table, $title, $project, $get_html = false)
+    public function pdf_circuit_schedule($table, $title, $project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
       
@@ -554,10 +594,16 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output($table.'.pdf', 'H');
+        if($save_local){
+            $pdf_name = "circuit_dimming_schedule.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output($table.'.pdf', 'H');
+        }
     }
 
-    public function pdf_lcp($table, $title, $project, $get_html = false)
+    public function pdf_lcp($table, $title, $project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
 
@@ -594,9 +640,15 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output($table.'.pdf', 'H');
+        if($save_local){
+            $pdf_name = "lcp.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output($table.'.pdf', 'H');
+        }
     }
-    public function pdf_dimming($table, $title, $project, $get_html = false)
+    public function pdf_dimming($table, $title, $project, $get_html = false, $save_local = false)
     {
         $this->load->library('HtmlPdf');
 
@@ -634,7 +686,13 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output($table.'.pdf', 'H');
+        if($save_local){
+            $pdf_name = "dimming_setting.pdf";
+            $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+            echo $pdf_name;
+        }else{
+            $this->pdf->Output($table.'.pdf', 'H');
+        }
     }
 
 }

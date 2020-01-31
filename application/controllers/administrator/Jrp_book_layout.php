@@ -296,7 +296,7 @@ class Jrp_book_layout extends Admin
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_book_layout->pdf_layout('jrp_book_layout', 'Layout', $project);
+		$this->model_jrp_book_layout->pdf_layout('jrp_book_layout', 'Layout', $project, false, true);
 	}
 
 

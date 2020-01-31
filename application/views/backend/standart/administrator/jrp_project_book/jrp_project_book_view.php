@@ -2,6 +2,9 @@
     .table-responsive{
         overflow-x: unset;
     }
+    .pdf-download, .pdf-download:hover, .pdf-download:active, .pdf-download:focus {
+        color:red;
+    }
 </style>
 <script src="<?= BASE_ASSET; ?>/js/jquery.hotkeys.js"></script>
 <script type="text/javascript">
@@ -90,8 +93,8 @@ jQuery(document).ready(domo);
                    
                    
                    <h3><strong>PDF Download</strong></h3>
-                  <div class="row">
-                      <a class="btn btn-flat btn-success" style="margin-left:18px;" href="/administrator/jrp_project_book/vew_all_pdf/<?=$jrp_project_book->id?>" target="_blank">View All PDF</a>
+                  <div class="col-md-12 form-group">
+                      <a class="btn btn-flat btn-success generate-pdf" href="/administrator/jrp_project_book/vew_all_pdf/<?=$jrp_project_book->id?>" target="_blank">View All PDF</a><br/>
                   </div>
                    <div class="table-responsive"> 
 	                 <table class="table table-bordered table-striped dataTable">
@@ -109,28 +112,30 @@ jQuery(document).ready(domo);
 		                     <tr>
 		                     	<td><a target="_blank" href="javascript:void(0)" onclick="export_pdf_cover()">Download</a></td>
 		                     	<td>
-			                     	<a target="_blank" href="<?= base_url('administrator/jrp_book_layout/export_pdf_layout/');?><?= _ent($jrp_project_book->id); ?>">Layout Download</a><br>
-                           <a target="_blank" href="<?= base_url('administrator/jrp_project_app_detail/export_pdf_layout/');?><?= _ent($jrp_project_book->id); ?>">App. Detail Download</a><br>
-                            <a target="_blank" href="<?= base_url('administrator/jrp_book_fixture_detail/export_pdf_layout/');?><?= _ent($jrp_project_book->id); ?>">Fixture Detail Download</a><br>
-                                    <a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_agent/$jrp_project_book->id");?>">Agent List Download</a><br>
+			                     	<a target="_blank" href="<?= base_url("administrator/jrp_book_layout/export_pdf_layout/$jrp_project_book->id");?>" class="generate-pdf">Layout Download</a><br>
+                                    <a target="_blank" href="<?= base_url("administrator/jrp_project_app_detail/export_pdf_layout/$jrp_project_book->id");?>" class="generate-pdf">App. Detail Download</a><br>
+                                    <a target="_blank" href="<?= base_url("administrator/jrp_book_fixture_detail/export_pdf_layout/$jrp_project_book->id");?>" class="generate-pdf">Fixture Detail Download</a><br>
+                                    <a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_agent/$jrp_project_book->id");?>" class="generate-pdf">Agent List Download</a><br>
 
 		                     	</td>
 		                     	<td>
-			                     	<a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_fixtures_note/');?><?= _ent($jrp_project_book->id); ?>">Fixture Notes Download</a><br>
-	                        <a target="_blank" href="<?= base_url('/uploads/pdf/jrp_book_layout.pdf');?>">Fixture Specs Download</a><br>
+			                     	<a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_fixtures_note/$jrp_project_book->id");?>" class="generate-pdf">Fixture Notes Download</a><br>
+
+	                                <a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_fixtures_spec/$jrp_project_book->id");?>" class="generate-pdf">Fixture Specs Download</a><br>
+
 		                     	</td>
 		                     	<td>
-			                     	<a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_circuit_qty/');?><?= _ent($jrp_project_book->id); ?>">Circuit Quantities Download</a><br>
-                           <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_fixture_qty/');?><?= _ent($jrp_project_book->id); ?>">Fixture Quantities Download</a><br>
-                                <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_component_qty/');?><?= _ent($jrp_project_book->id); ?>">Component Quantities Download</a><br>
+			                     	<a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_circuit_qty/$jrp_project_book->id");?>" class="generate-pdf">Circuit Quantities Download</a><br>
+                                    <a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_fixture_qty/$jrp_project_book->id");?>" class="generate-pdf">Fixture Quantities Download</a><br>
+                                    <a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_component_qty/$jrp_project_book->id");?>" class="generate-pdf">Component Quantities Download</a><br>
 		                     	</td>
 		                     	<td>
-			                     	<a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_schedule_note/');?><?= _ent($jrp_project_book->id); ?>">Circuit Schedule Notes Download</a><br>
-	                        <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_circuit_schedule/');?><?= _ent($jrp_project_book->id); ?>">Circuit & Dimming Schedule Download</a><br>
+			                     	<a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_schedule_note/$jrp_project_book->id");?>" class="generate-pdf">Circuit Schedule Notes Download</a><br>
+	                                <a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_circuit_schedule/$jrp_project_book->id");?>" class="generate-pdf">Circuit & Dimming Schedule Download</a><br>
 		                     	</td>
 		                     	<td>
-	                        <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_lcp/');?><?= _ent($jrp_project_book->id); ?>">LCP Download</a><br>
-	                        <a target="_blank" href="<?= base_url('administrator/jrp_project_book/export_pdf_dimming/');?><?= _ent($jrp_project_book->id); ?>">Dimming Setting Download</a><br>
+	                                <a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_lcp/$jrp_project_book->id");?>" class="generate-pdf">LCP Download</a><br>
+	                                <a target="_blank" href="<?= base_url("administrator/jrp_project_book/export_pdf_dimming/$jrp_project_book->id");?>" class="generate-pdf">Dimming Setting Download</a><br>
 		                     	</td>
 		                     </tr>
                          <tr>
@@ -245,7 +250,36 @@ jQuery(document).ready(domo);
     //    });
     //
     //}
-    //$(document).ready(function(){
-    //
-    //});
+    $(document).ready(function(){
+        $('.generate-pdf').on('click', function(){
+
+            console.log('hello: '+$(this).attr('href'));
+            var link_call = $(this).attr('href');
+            var currentElem = $(this);
+            var form_csrf = $('#form_csrf_ajax');
+            var data_post = form_csrf.serializeArray();
+
+            if(currentElem.next().next().hasClass('pdf-download')){
+                currentElem.next().next().remove();
+            }
+
+            $.LoadingOverlay('show');
+            $.ajax({
+                url: link_call,
+                type: 'POST',
+                dataType: 'html',
+                data: data_post,
+            }).success(function(res) {
+                $.LoadingOverlay('hide');
+                currentElem.next().after('<a target="_blank" href="/uploads/pdf/'+res+'" class="pdf-download">Download <br/></a>');
+                console.log(res);
+            }).fail(function(error) {
+                alert(error);
+            });
+
+
+            return false;
+        })
+
+    });
 </script>

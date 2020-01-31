@@ -327,7 +327,7 @@ class Jrp_project_app_detail extends Admin
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_project_app_detail->pdf_layout('jrp_project_app_detail', 'Application Detail', $project);
+		$this->model_jrp_project_app_detail->pdf_layout('jrp_project_app_detail', 'Application Detail', $project, false, true);
 	}
 
 }

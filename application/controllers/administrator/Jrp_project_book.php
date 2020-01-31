@@ -273,6 +273,7 @@ class Jrp_project_book extends Admin
 
 	public function vew_all_pdf($project_id){
 
+
         $this->load->model('model_jrp_book_layout');
         $this->load->model('model_jrp_project_app_detail');
         $this->load->model('model_jrp_book_fixture_detail');
@@ -312,7 +313,10 @@ class Jrp_project_book extends Admin
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullwidth');
         $this->pdf->writeHTML(trim($full_content));
-        $this->pdf->Output('vew_all_pdf.pdf', 'H');
+
+        $pdf_name = "vew_all_pdf.pdf";
+        $this->pdf->Output(FCPATH . "/uploads/pdf/$pdf_name", 'F');
+        echo $pdf_name;
 
     }
 
@@ -352,7 +356,8 @@ class Jrp_project_book extends Admin
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_project_book->pdf_fixtures_note($project);
+		$this->model_jrp_project_book->pdf_fixtures_note($project, false, true);
+
 	}
 	
 	public function export_pdf_fixtures_spec($project_id)
@@ -371,7 +376,7 @@ class Jrp_project_book extends Admin
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_project_book->pdf_circuit_qty('jrp_book_circuit','Circuit Quantities',$project);
+		$this->model_jrp_project_book->pdf_circuit_qty('jrp_book_circuit','Circuit Quantities',$project, false, true);
 	}
 
     public function export_pdf_agent($project_id)
@@ -380,7 +385,7 @@ class Jrp_project_book extends Admin
 
         $project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-        $this->model_jrp_project_book->pdf_agent('jrp_book_circuit_schedule','Agent List',$project);
+        $this->model_jrp_project_book->pdf_agent('jrp_book_circuit_schedule','Agent List',$project, false, true);
     }
 
     public function export_pdf_lcp($project_id)
@@ -389,7 +394,7 @@ class Jrp_project_book extends Admin
 
         $project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-        $this->model_jrp_project_book->pdf_lcp('jrp_project_lcp','LCP',$project);
+        $this->model_jrp_project_book->pdf_lcp('jrp_project_lcp','LCP',$project, false, true);
     }
     public function export_pdf_dimming($project_id)
     {
@@ -397,7 +402,7 @@ class Jrp_project_book extends Admin
 
         $project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-        $this->model_jrp_project_book->pdf_dimming('jrp_book_dimming_setting','DIMMING SETTING',$project);
+        $this->model_jrp_project_book->pdf_dimming('jrp_book_dimming_setting','DIMMING SETTING',$project, false, true);
     }
 	
 	public function export_pdf_fixture_qty($project_id)
@@ -406,7 +411,7 @@ class Jrp_project_book extends Admin
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_project_book->pdf_fixture_qty('jrp_book_circuit_schedule','Fixture Quantities',$project);
+		$this->model_jrp_project_book->pdf_fixture_qty('jrp_book_circuit_schedule','Fixture Quantities',$project, false, true);
 	}
 	
 	public function export_pdf_component_qty($project_id)
@@ -415,7 +420,7 @@ class Jrp_project_book extends Admin
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_project_book->pdf_component_qty('jrp_book_circuit_schedule','Component Quantities',$project);
+		$this->model_jrp_project_book->pdf_component_qty('jrp_book_circuit_schedule','Component Quantities',$project, false, true);
 	}
 	
 	public function export_pdf_schedule_note($project_id)
@@ -424,7 +429,7 @@ class Jrp_project_book extends Admin
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_project_book->pdf_schedule_note($project);
+		$this->model_jrp_project_book->pdf_schedule_note($project, false, true);
 	}
 
     public function export_pdf_cover($project_id)
@@ -443,7 +448,7 @@ class Jrp_project_book extends Admin
 		
 		$project = $this->model_jrp_project_book->get_single("id = ".$project_id);
 
-		$this->model_jrp_project_book->pdf_circuit_schedule('jrp_book_circuit_schedule','Circuit & Dimming Schedule',$project);
+		$this->model_jrp_project_book->pdf_circuit_schedule('jrp_book_circuit_schedule','Circuit & Dimming Schedule',$project, false, true);
 	}
 }
 

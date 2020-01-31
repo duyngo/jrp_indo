@@ -94,7 +94,7 @@ jQuery(document).ready(domo);
                    
                    <h3><strong>PDF Download</strong></h3>
                   <div class="col-md-12 form-group">
-                      <a class="btn btn-flat btn-success generate-pdf" href="/administrator/jrp_project_book/vew_all_pdf/<?=$jrp_project_book->id?>" target="_blank">View All PDF</a><br/>
+                      <a class="btn btn-flat btn-success generate-pdf" href="<?= base_url("administrator/jrp_project_book/vew_all_pdf/$jrp_project_book->id");?>" target="_blank">View All PDF</a><br/>
                   </div>
                    <div class="table-responsive"> 
 	                 <table class="table table-bordered table-striped dataTable">

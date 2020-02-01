@@ -274,6 +274,9 @@ class Jrp_project_book extends Admin
 	public function vew_all_pdf($project_id){
 
 
+        ini_set('memory_limit', '1024M');
+        ini_set('max_execution_time', 0);
+
         $this->load->model('model_jrp_book_layout');
         $this->load->model('model_jrp_project_app_detail');
         $this->load->model('model_jrp_book_fixture_detail');

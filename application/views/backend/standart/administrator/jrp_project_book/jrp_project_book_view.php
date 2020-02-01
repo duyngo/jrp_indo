@@ -269,6 +269,7 @@ jQuery(document).ready(domo);
                 type: 'POST',
                 dataType: 'html',
                 data: data_post,
+                timeout: 0
             }).success(function(res) {
                 $.LoadingOverlay('hide');
                 currentElem.next().after('<a target="_blank" href="/uploads/pdf/'+res+'" class="pdf-download">Download <br/></a>');

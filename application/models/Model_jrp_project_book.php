@@ -439,7 +439,7 @@ class Model_jrp_project_book extends MY_Model {
         
         //$this->db->start_cache();
         $this->db->distinct();
-        $this->db->select('ma.name as Manufacturer, fi.code, co.name, co.watt, co.catalog_number, co.finishing');
+        $this->db->select('ma.name as factory_name, fi.code, co.name, co.watt, co.catalog_number, co.finishing');
         $this->db->from('jrp_component co');
         $this->db->join('jrp_manufacturer ma','co.manufacturer = ma.id');
         $this->db->join('jrp_fixture_component fc', 'co.id = fc.component_id');
@@ -450,8 +450,24 @@ class Model_jrp_project_book extends MY_Model {
         $result = $this->db->get();
         $fields = $result->list_fields();
 
+        $data = $result->result();
+        $group_data_view = array();
+        $first_factor_name = '';
+        foreach($data as $key => $item){
+            if($key == 0){
+                $first_factor_name = $item->factory_name;
+            }
+            if(isset($group_data_view[$item->factory_name])){
+                $group_data_view[$item->factory_name][] = $item;
+            }else{
+                $group_data_view[$item->factory_name] = array();
+                $group_data_view[$item->factory_name][]=$item;
+            }
+        }
+
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/qty', [
-            'results' => $result->result(),
+            'group_data_view' => $group_data_view,
+            'first_factor_name' => $first_factor_name,
             'fields' => $fields,
             'title' => $title,
             'project_name' => $project->name
@@ -561,11 +577,13 @@ class Model_jrp_project_book extends MY_Model {
 			$arrId[] = $layout->layout_id;
 		}
         
-        $this->db->select("c.circuit, c.circuit_desc, cs.feed_from, cs.dim_rack, cs.quantity, f.code as fixture_code, lt.name AS load_name, c.layout_id, (select SUM(co.watt) from jrp_fixture_component fc
+        $this->db->select("c.circuit, c.circuit_desc, cs.feed_from, cs.dim_rack, cs.quantity, f.code as fixture_code, lt.name AS load_name, c.layout_id, pad.title AS app_detail,
+         (select SUM(co.watt) from jrp_fixture_component fc
         JOIN jrp_component co ON fc.component_id = co.id
         WHERE fc.`fixture_id` = cs.fixtures) as watt");
         $this->db->from($table.' cs');
         $this->db->join('jrp_project_book pb','cs.project_id = pb.id');
+        $this->db->join('jrp_project_app_detail pad','pad.project_id = pb.id');
         $this->db->join('jrp_fixture f','cs.fixtures = f.id');
         $this->db->join('jrp_book_circuit c', 'cs.circuit_id = c.id');
         $this->db->join('jrp_mstr_load_type lt', 'cs.load_type = lt.id');
@@ -660,7 +678,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $this->pdf = new HtmlPdf($config);
 
-        $this->db->select("c.circuit_id,c.scene_1,c.scene_2,c.scene_3,c.scene_4,c.scene_5,c.scene_6,c.note,bc.circuit");
+        $this->db->select("c.circuit_id, bc.circuit, c.scene_1, c.scene_2, c.scene_3, c.scene_4, c.scene_5, c.scene_6, c.note");
         $this->db->from($table.' c');
         $this->db->join('jrp_project_book pb','c.project_id = pb.id');
         $this->db->join('jrp_book_circuit bc','c.circuit_id = bc.id');

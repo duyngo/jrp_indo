@@ -43,13 +43,9 @@
 				<th>Watt</th>
 				<th>Circuit Description</th>
 				<th>Load Type</th>
+                <th>AD</th>
 				<th>Total Power</th>
 				<th>Load(A)</th>
-<!--
-			<?php foreach ($fields as $field): ?>
-				<th><?= ucwords(str_replace(['_', '-'], ' ', $field)); ?></th>
-			<?php endforeach; ?>
--->
 			</tr>
 		</thead>
 		<tbody>
@@ -64,30 +60,20 @@
 				<td><?= $row->watt ?></td>
 				<td><?= $row->circuit_desc ?></td>
 				<td><?= $row->load_name ?></td>
+                <td><?= $row->app_detail ?></td>
 				<td><?= $row->quantity * $row->watt ?></td>
 				<td><?= round((($row->quantity * $row->watt)/220*1.2),2) ?></td>
 			</tr>
 			<?php endif;?>
 			<?php endforeach; ?>
-<!--
-			<?php foreach($results as $row): ?>
-			<?php if($layout->layout_id == $row->layout_id) :?>
-			<tr>
-				<?php foreach ($fields as $field){ ?>
-					<td><?= $row->{$field}; ?></td>
-				<?php } ?>
-			</tr>
-			<?php endif;?>
-			<?php endforeach; ?>
--->
 		</tbody>
 	</table>
-	
-	
+
 
   <page_footer>
     <div style="text-align: center;">Page [[page_cu]]</div>
   </page_footer>
 </page>
+
 <?php endforeach; ?>
 

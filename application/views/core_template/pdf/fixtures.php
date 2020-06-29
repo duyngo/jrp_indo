@@ -27,6 +27,7 @@
                 <td>
                     <h1><?= $project_name ?></h1>
                     <h2>Fixture Specifications</h2>
+                    <h4>Revision: <?=$revision?></h4>
                 </td>
             </tr>
         </table>

@@ -31,7 +31,7 @@
             Fixture	Detail<br/>
             Specification Document
         </td>
-        <td align="center" valign="top">Revison <?=$_GET['drawing']?></td>
+        <td align="center" valign="top">Revision <?=$_GET['drawing']?></td>
     </tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td>&nbsp;</td></tr>
@@ -43,7 +43,7 @@
             Spec Sheet<br/>
             Fixture	Detail
         </td>
-        <td align="center" valign="top">Revison <?=$_GET['fixture']?></td>
+        <td align="center" valign="top">Revision <?=$_GET['fixture']?></td>
     </tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td>&nbsp;</td></tr>
@@ -53,7 +53,7 @@
             Circuit	Quantities<br/>
             Fixture	Quantities
         </td>
-        <td align="center" valign="top">Revison <?=$_GET['quantity']?></td>
+        <td align="center" valign="top">Revision <?=$_GET['quantity']?></td>
     </tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td>&nbsp;</td></tr>
@@ -65,7 +65,7 @@
             Application	Detail<br/>
             Dimmer Spec Sheet
         </td>
-        <td align="center" valign="top">Revison <?=$_GET['schedule']?></td>
+        <td align="center" valign="top">Revision <?=$_GET['schedule']?></td>
     </tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td>&nbsp;</td></tr>
@@ -78,7 +78,7 @@
             Lighting Control Spec Sheet<br/>
             Dimming	Pre	setting
         </td>
-        <td align="center" valign="top">Revison <?=$_GET['lcp']?></td>
+        <td align="center" valign="top">Revision <?=$_GET['lcp']?></td>
     </tr>
 
 

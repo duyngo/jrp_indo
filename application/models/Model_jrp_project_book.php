@@ -141,7 +141,8 @@ class Model_jrp_project_book extends MY_Model {
         
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/fixtures-notes', [
-            'project_name' => $project->name
+            'project_name' => $project->name,
+            'revision' => $_POST['fixture_revision'],
         ], TRUE);
 
         if($get_html){
@@ -211,6 +212,7 @@ class Model_jrp_project_book extends MY_Model {
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/fixtures', [
 	        'fixtures' => $fixtures,
 	        'fixture_components' => $result,
+            'revision' => $_POST['fixture_revision'],
             //'results' => $result->result(),
             //'fields' => $fields,
             'title' => $title,
@@ -290,6 +292,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/qty', [
             'results' => $result->result(),
+            'revision' => $_POST['quantity_revision'],
             'fields' => $fields,
             'title' => $title,
             'project_name' => $project->name
@@ -338,6 +341,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/agent', [
             'results' => $result->result(),
+            'revision' => $_POST['drawing_revision'],
             'fields' => $fields,
             'title' => $title,
             'project_name' => $project->name
@@ -403,6 +407,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/qty-fixture', [
 	        'layouts' => $layouts,
+            'revision' => $_POST['quantity_revision'],
             'results' => $result,
 //            'fields' => $fields,
             'title' => $title,
@@ -465,9 +470,10 @@ class Model_jrp_project_book extends MY_Model {
             }
         }
 
-        $content = $this->pdf->loadHtmlPdf('core_template/pdf/qty', [
+        $content = $this->pdf->loadHtmlPdf('core_template/pdf/qty-component', [
             'group_data_view' => $group_data_view,
             'first_factor_name' => $first_factor_name,
+            'revision' => $_POST['quantity_revision'],
             'fields' => $fields,
             'title' => $title,
             'project_name' => $project->name
@@ -503,7 +509,8 @@ class Model_jrp_project_book extends MY_Model {
         
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/schedule-notes', [
-            'project_name' => $project->name
+            'project_name' => $project->name,
+            'revision' => $_POST['schedule_revision'],
         ], TRUE);
 
         if($get_html){
@@ -544,7 +551,7 @@ class Model_jrp_project_book extends MY_Model {
         $this->pdf->initialize($config);
         $this->pdf->pdf->SetDisplayMode('fullpage');
         $this->pdf->writeHTML($content);
-        $this->pdf->Output('fixtures_note.pdf', 'H');
+        $this->pdf->Output('cover.pdf', 'H');
     }
     
     public function pdf_circuit_schedule($table, $title, $project, $get_html = false, $save_local = false)
@@ -600,6 +607,7 @@ class Model_jrp_project_book extends MY_Model {
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/schedule', [
 	        'layouts' => $layouts,
             'results' => $result->result(),
+            'revision' => $_POST['schedule_revision'],
             'fields' => $fields,
             'title' => $title,
             'project_name' => $project->name
@@ -646,6 +654,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/qty', [
             'results' => $result->result(),
+            'revision' => $_POST['lcp_revision'],
             'fields' => $fields,
             'title' => $title,
             'project_name' => $project->name
@@ -692,6 +701,7 @@ class Model_jrp_project_book extends MY_Model {
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/dimming', [
             'results' => $result->result(),
+            'revision' => $_POST['lcp_revision'],
             'fields' => $fields,
             'title' => $title,
             'project_name' => $project->name

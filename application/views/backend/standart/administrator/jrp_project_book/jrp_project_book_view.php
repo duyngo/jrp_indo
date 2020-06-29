@@ -141,7 +141,7 @@ jQuery(document).ready(domo);
                          <tr>
                              <td>&nbsp;</td>
                              <td>
-                                 <select type="text" class="form-control chosen chosen-select" name="drawing" id="drawing" placeholder="Site Email" >
+                                 <select type="text" class="form-control chosen chosen-select" name="drawing" id="drawing_revision" placeholder="Site Email" >
 
                                      <?php foreach($alphabet as $alpha){?>
                                          <option value="<?=$alpha?>"><?=$alpha?></option>
@@ -150,7 +150,7 @@ jQuery(document).ready(domo);
                                  </select>
                              </td>
                              <td>
-                                 <select type="text" class="form-control chosen chosen-select" name="fixture" id="fixture" placeholder="Site Email" >
+                                 <select type="text" class="form-control chosen chosen-select" name="fixture" id="fixture_revision" placeholder="Site Email" >
 
                                      <?php foreach($alphabet as $alpha){?>
                                          <option value="<?=$alpha?>"><?=$alpha?></option>
@@ -159,7 +159,7 @@ jQuery(document).ready(domo);
                                  </select>
                              </td>
                              <td>
-                                 <select type="text" class="form-control chosen chosen-select" name="quantity" id="quantity" placeholder="Site Email" >
+                                 <select type="text" class="form-control chosen chosen-select" name="quantity" id="quantity_revision" placeholder="Site Email" >
 
                                      <?php foreach($alphabet as $alpha){?>
                                          <option value="<?=$alpha?>"><?=$alpha?></option>
@@ -168,7 +168,7 @@ jQuery(document).ready(domo);
                                  </select>
                              </td>
                              <td>
-                                 <select type="text" class="form-control chosen chosen-select" name="schedule" id="schedule" placeholder="Site Email" >
+                                 <select type="text" class="form-control chosen chosen-select" name="schedule" id="schedule_revision" placeholder="Site Email" >
 
                                      <?php foreach($alphabet as $alpha){?>
                                          <option value="<?=$alpha?>"><?=$alpha?></option>
@@ -177,7 +177,7 @@ jQuery(document).ready(domo);
                                  </select>
                              </td>
                              <td>
-                                 <select type="text" class="form-control chosen chosen-select" name="lcp" id="lcp" placeholder="Site Email" >
+                                 <select type="text" class="form-control chosen chosen-select" name="lcp" id="lcp_revision" placeholder="Site Email" >
 
                                      <?php foreach($alphabet as $alpha){?>
                                          <option value="<?=$alpha?>"><?=$alpha?></option>
@@ -222,11 +222,11 @@ jQuery(document).ready(domo);
 <script>
     function export_pdf_cover(){
         console.log('helloooo');
-        var drawing = $('#drawing').val();
-        var fixture = $('#fixture').val();
-        var quantity = $('#quantity').val();
-        var schedule = $('#schedule').val();
-        var lcp = $('#lcp').val();
+        var drawing = $('#drawing_revision').val();
+        var fixture = $('#fixture_revision').val();
+        var quantity = $('#quantity_revision').val();
+        var schedule = $('#schedule_revision').val();
+        var lcp = $('#lcp_revision').val();
         var str_query = "?drawing="+drawing+"&fixture="+fixture+"&quantity="+quantity+"&schedule="+schedule+"&lcp="+lcp;
         //console.log(encodeURI(str_query));
         window.open("/administrator/jrp_project_book/export_pdf_cover/<?=$jrp_project_book->id?>"+str_query);
@@ -252,12 +252,18 @@ jQuery(document).ready(domo);
     //}
     $(document).ready(function(){
         $('.generate-pdf').on('click', function(){
+            // debugger;
 
             console.log('hello: '+$(this).attr('href'));
             var link_call = $(this).attr('href');
             var currentElem = $(this);
             var form_csrf = $('#form_csrf_ajax');
             var data_post = form_csrf.serializeArray();
+            data_post.push({name:'drawing_revision', value:$('#drawing_revision').val()});
+            data_post.push({name:'fixture_revision', value:$('#fixture_revision').val()});
+            data_post.push({name:'quantity_revision', value:$('#quantity_revision').val()});
+            data_post.push({name:'schedule_revision', value:$('#schedule_revision').val()});
+            data_post.push({name:'lcp_revision', value:$('#lcp_revision').val()});
 
             if(currentElem.next().next().hasClass('pdf-download')){
                 currentElem.next().next().remove();
@@ -268,8 +274,7 @@ jQuery(document).ready(domo);
                 url: link_call,
                 type: 'POST',
                 dataType: 'html',
-                data: data_post,
-                timeout: 0
+                data: data_post
             }).success(function(res) {
                 $.LoadingOverlay('hide');
                 currentElem.next().after('<a target="_blank" href="/uploads/pdf/'+res+'" class="pdf-download">Download <br/></a>');

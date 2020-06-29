@@ -114,6 +114,7 @@ class Model_jrp_book_layout extends MY_Model {
 
         $content = $this->pdf->loadHtmlPdf('core_template/pdf/layout', [
             'results' => $result->result(),
+            'revision' => $_POST['drawing_revision'],
             'fields' => $fields,
             'title' => $title,
             'project_name' => $project->name
